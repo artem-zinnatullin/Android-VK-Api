@@ -20,5 +20,10 @@ local.properties
 .project
 .settings
 
-# IDEA IDE project files
-.iml
+# IDEA IDE project files and folders
+*.iml
+.idea/
+
+# Resource folder not needed
+res/
+

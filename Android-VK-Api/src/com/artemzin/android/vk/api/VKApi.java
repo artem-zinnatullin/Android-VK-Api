@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.zip.GZIPInputStream;
 
@@ -54,7 +55,12 @@ public class VKApi {
 		// By default, connection timeout will be 30 seconds
 		CONNECTION_TIMEOUT_DEFAULT = 30000;
 	}
-	
+
+    /**
+     * Status of debug mode
+     */
+    private boolean debugMode;
+
 	/**
 	 * VKUser authorization token
 	 */
@@ -96,7 +102,23 @@ public class VKApi {
 		this.accessToken = accessToken;
 		this.appId = appId;
 	}
-	
+
+    /**
+     * Enable/Disable debug mode (Will cause LogCat debug messages)
+     * @param debugMode true to enable, false to disable
+     */
+    public void setDebugMode(final boolean debugMode) {
+        this.debugMode = debugMode;
+    }
+
+    /**
+     * By default, debug mode is false
+     * @return current debug mode status
+     */
+    public boolean getDebugMode() {
+        return this.debugMode;
+    }
+
 	/**
 	 * Enabling/Disabling gzip compression for queries
 	 * @param status true - gzip enabled, false - gzip disabled
@@ -131,19 +153,47 @@ public class VKApi {
 	 * @return current connection timeout in millis
 	 */
 	public int getConnectionTimeout() {
-		return this.connectionTimeout;
+        return this.connectionTimeout;
 	}
-	
+
+    /**
+     * Output LogCat message if debugMode enabled
+     * @param logType of message, use android.util.Log static vars
+     * @param message to output
+     */
+    private void log(final int logType, String message) {
+        if (!debugMode) return;
+        switch (logType) {
+            case Log.DEBUG:
+                Log.d(TAG, message);
+                break;
+            case Log.ERROR:
+                Log.e(TAG, message);
+                break;
+            case Log.INFO:
+                Log.i(TAG, message);
+                break;
+            case Log.VERBOSE:
+                Log.v(TAG, message);
+                break;
+            case Log.WARN:
+                Log.w(TAG, message);
+                break;
+            default:
+                return;
+        }
+    }
+
 	/**
 	 * Setting new connection timeout for network operations
 	 * @param connectionTimeout in millis
-	 * @throws Exception if connection timeout negative or zero
+	 * @throws InvalidParameterException if connection timeout negative or zero
 	 */
-	public void setConnectionTimeout(int connectionTimeout) throws Exception {
+	public void setConnectionTimeout(int connectionTimeout) throws InvalidParameterException {
 		if (connectionTimeout < 0) {
-			throw new Exception("Connection timeout could not be negative");
+			throw new InvalidParameterException("Connection timeout could not be negative");
 		} else if (connectionTimeout == 0) {
-			throw new Exception("Connection timeout could not be zero");
+			throw new InvalidParameterException("Connection timeout could not be zero");
 		} else {
 			this.connectionTimeout = connectionTimeout;
 		}
@@ -176,14 +226,14 @@ public class VKApi {
 	private JSONObject sendRequest(VKRequestParams requestParams) throws Exception {
 		final String requestUrl = createRequestUrl(requestParams);
 		String response = null;
-		Log.d(TAG, "Request url: " + requestUrl);
+		log(Log.DEBUG, "Request url: " + requestUrl);
 		for (int i = 1; i <= queryRetryLimit; i++) {
 			if (i != 1) {
-				Log.w(TAG, "Request was failed, trying again (" + i + ")");
+                log(Log.WARN, "Request was failed, trying again (" + i + ")");
 			}
 			try {
 				response = sendRequestInternal(requestUrl);
-				Log.d(TAG, "Server response: " + response);
+                log(Log.DEBUG, "Server response: " + response);
 				break;
 			} catch (javax.net.ssl.SSLException e) {
 				if (i == this.queryRetryLimit) {
@@ -222,7 +272,7 @@ public class VKApi {
 				connection.setRequestProperty("Accept-Encoding", "gzip");
 			}
 			responseCode = connection.getResponseCode();
-			Log.d(TAG, "Server responce code: " + responseCode);
+            log(Log.DEBUG, "Server responce code: " + responseCode);
 			// Because of using keep-alive, we could get responseCode == -1
 			if (responseCode == -1) {
 				throw new Exception("Got response code -1, may be http keep-alive problem");

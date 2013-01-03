@@ -67,12 +67,6 @@ public class VKApi {
 	private final String accessToken;
 	
 	/**
-	 * vk.com application id
-	 */
-	@SuppressWarnings("unused")
-	private final long appId;
-	
-	/**
 	 * Gzip compression enable/disable
 	 */
 	private boolean isGzipEnable;
@@ -96,11 +90,9 @@ public class VKApi {
 	/**
 	 * Creating vk.com api instance
 	 * @param accessToken user access token, needed for queries
-	 * @param appId of application in vk.com
 	 */
-	public VKApi(String accessToken, long appId) {
+	public VKApi(String accessToken) {
 		this.accessToken = accessToken;
-		this.appId = appId;
 	}
 
     /**

@@ -10,229 +10,290 @@ import org.json.JSONObject;
  */
 public class VKUser {
 
-	/**
+    /**
+     * Information update time, needed for most apps
+     */
+    public Long updateTime;
+
+    /**
 	 * vk.com user id
 	 */
-	public long id;
-	
-	/**
-	 * Information update time
-	 */
-	public long updateTime;
-	
-	/**
-	 * @see <a href="https://vk.com/developers.php?oid=-1&p=friends.areFriends">VK isFriend docs</a>
-	 * Is user a friend
-	 * 0 is not a friend
-	 * 1 sended request to be friends
-	 * 2 incoming request to be friends from outer user
-	 * 3 is a friend
-	 */
-	public int isFriend;
-	
-	/**
-	 * VKUser first name
-	 */
-	public String firstName;
-	
-	/**
-	 * VKUser last name
-	 */
-	public String lastName;
-	
-	/**
-	 * VKUser nickname
-	 */
-	public String nickName;
-	
-	/**
-	 * VKUser sex
-	 * 1 - female
-	 * 2 - male
-	 * 0 - unknown
-	 */
-	public int sex;
-	
-	/**
-	 * VKUser online status
-	 */
-	public boolean isOnline;
-	
-	/**
-	 * If user is online from mobile device
-	 */
-	public boolean isOnlineMobile;
-	
-	/**
-	 * Birthday date
-	 */
-	public String birthDate;
-	
-	/**
-	 * Url to photo with width==50px
-	 */
-	public String photoUrl;
-	
-	/**
-	 * Url to photo with width==100px
-	 */
-	public String photoMediumUrl;
-	
-	/**
-	 * Url to square photo with witdh==height==100px 
-	 */
-	public String photoMediumRecUrl;
-	
-	/**
-	 * Url to photo with witdh==200px
-	 */
-	public String photoBigUrl;
-	
-	/**
-	 * Url to square photo with width==height==50px
-	 */
-	public String photoRecUrl;
-	
-	/**
-	 * Code of user city
-	 */
-	public int cityCode;
-	
-	/**
-	 * Code of user country
-	 */
-	public int countryCode;
-	
-	/**
-	 * VKUser`s timezone
-	 */
-	public int timezone;
-	
-	/**
-	 * Is user has mobile phone
-	 */
-	public boolean isHasMobilePhone;
-	
-	/**
-	 * Part of link after http://vk.com/...
-	 * Example: id172672179
-	 */
-	public String screenName;
-	
-	/**
-	 * VKUser rate
-	 */
-	public String rate;
-	
-	/**
-	 * VKUser activity status
-	 * Example: Walking with my friends
-	 */
-	public String activity;
-	
-	/**
-	 * Last seen time
-	 */
-	public long lastSeen;
-	
-	/**
-	 * Mobile phone number
-	 */
-	public String mobilePhoneNumber;
-	
-	/**
-	 * Home phone number
-	 */
-	public String homePhoneNumber;
-	
-	{
-		firstName  = "";
-		lastName   = "";
-	}
+	public Long uId;
+
+    /**
+     * First name
+     */
+    public String firstName;
+
+    /**
+     * Last name
+     */
+    public String lastName;
+
+    /**
+     * User`s sex
+     * 1 - female
+     * 2 - male
+     * 0 - unknown
+     */
+    public Integer sex;
+
+    /**
+     * Birthday date
+     * For example: "23.11.1981" or "21.9" if year is hidden
+     */
+    public String bDate;
+
+    /**
+     * Id of user`s city
+     * @see VKApi# getCities
+     */
+    public Long city;
+
+    /**
+     * Id of user`s country
+     * @see VKApi# getCountries
+     */
+    public Long country;
+
+    /**
+     * Url to square photo with width == height == 50px
+     */
+    public String photo50;
+
+    /**
+     * Url to square photo with width == height == 100px
+     */
+    public String photo100;
+
+    /**
+     * Url to not necessarily square photo with width = 200px
+     */
+    public String photo200Orig;
+
+    /**
+     * Url to square photo with width == height == 200px
+     */
+    public String photo200;
+
+    /**
+     * Url to not necessarily square photo with width == 400px
+     */
+    public String photo400Orig;
+
+    /**
+     * Url to square photo with maximum of possible resolution
+     */
+    public String photoMax;
+
+    /**
+     * Url to not necessarily square photo with maximum of possible resolution
+     */
+    public String photoMaxOrig;
+
+    /**
+     * Is user online
+     */
+    public Boolean online;
+
+    /**
+     * If user is online from mobile device
+     */
+    public Boolean onlineMobile;
+
+    /**
+     * Id of application, from which user is online
+     * True only if user using some application, not web site
+     */
+    public Long onlineApp;
+
+    // TODO Add lists
+
+    /**
+     * Part of link after http://vk.com/...
+     * Example: id172672179 or "andrew"
+     */
+    public String screenName;
+
+    /**
+     * Is user`s mobile phone number known
+     */
+    public Boolean hasMobile;
+
+    // TODO Add contacts
+
+    // TODO Add education
+
+    // TODO Add universities
+
+    // TODO Add schools
+
+    // TODO Add can_post
+
+    // TODO Add can_see_all_posts
+
+    // TODO Add can_write_private_message
+
+    /**
+     * User`s activity status
+     * Example: "Walking with my friends"
+     */
+    public String activity;
+
+    /**
+     * Last seen time when user was online
+     */
+    public Long lastSeen;
+
+    /**
+     * Kind of relationship of user <br>
+     * 1 - Single <br>
+     * 2 - have a boyfriend / girlfriend <br>
+     * 3 - Engaged <br>
+     * 4 - Married <br>
+     * 5 - It is difficult <br>
+     * 6 - In active search <br>
+     * 7 - In love <br>
+     */
+    public Integer relation;
+
+    // TODO Add counters
+
+    /**
+     * User`s nickname
+     */
+    public String nickName;
+
+    // TODO Add exports
+
+    // TODO Add wall_comments
+
+    // TODO Add relatives
+
+    // TODO Add interests
+
+    // TODO Add movies
+
+    // TODO Add tv
+
+    // TODO Add books
+
+    // TODO Add games
+
+    // TODO Add about
+
+    // TODO Add connections
+
+    /**
+     * @see <a href="https://vk.com/developers.php?oid=-1&p=friends.areFriends">VK isFriend docs</a>
+     * Is user a friend
+     * 0 is not a friend
+     * 1 sended request to be friends
+     * 2 incoming request to be friends from outer user
+     * 3 is a friend
+     */
+    public Integer isFriend;
 	
 	/**
 	 * Parsing VKUser object from JSON
-	 * @param json with user data
+	 * @param json with user`s data
 	 * @return VKUser object with parsed fields
 	 */
 	public static VKUser parseFromJSON(JSONObject json) {
 		VKUser user = new VKUser();
-		user.id = json.optLong("uid");
-		if (!json.isNull("first_name")) {
+		if (!json.isNull("uid"))
+            user.uId = json.optLong("uid");
+		if (!json.isNull("first_name"))
 			user.firstName = json.optString("first_name");
-		}
-		if (!json.isNull("last_name")) {
+		if (!json.isNull("last_name"))
 			user.lastName = json.optString("last_name");
-		}
-		if (!json.isNull("nickname")) {
+        if (!json.isNull("sex"))
+            user.sex = json.optInt("sex");
+        if (!json.isNull("bdate"))
+            user.bDate = json.optString("bdate");
+        if (!json.isNull("city"))
+            user.city = json.optLong("city");
+        if (!json.isNull("country"))
+            user.country = json.optLong("country");
+        if (!json.isNull("photo_50"))
+            user.photo50 = json.optString("photo_50");
+        if (!json.isNull("photo_100"))
+            user.photo100 = json.optString("photo_100");
+        if (!json.isNull("photo_200"))
+            user.photo200 = json.optString("photo_200");
+        if (!json.isNull("photo_200_orig")) {
+            String response = json.optString("photo_200_orig");
+            if (!response.equals("false"))
+                user.photo200Orig = response;
+        }
+        if (!json.isNull("photo_400_orig"))
+            user.photo400Orig = json.optString("photo_400_orig");
+        if (!json.isNull("photo_max"))
+            user.photoMax = json.optString("photo_max");
+        if (!json.isNull("photo_max_orig"))
+            user.photoMaxOrig = json.optString("photo_max_orig");
+        if (!json.isNull("online"))
+            user.online = json.optInt("online") == 1;
+        if (!json.isNull("online_mobile"))
+            user.onlineMobile = json.optInt("online_mobile") == 1;
+        if (!json.isNull("online_app"))
+            user.onlineApp = json.optLong("online_app");
+
+        // Add lists
+
+        if (!json.isNull("screen_name"))
+            user.screenName = json.optString("screen_name");
+        if (!json.isNull("has_mobile"))
+            user.hasMobile = json.optInt("has_mobile") == 1;
+
+        // Add contacts
+
+        // Add education
+
+        // Add universities
+
+        // Add schools
+
+        // Add can_post
+
+        // Add can_see_all_posts
+
+        // Add can_write_private_message
+
+        if (!json.isNull("activity"))
+            user.activity = json.optString("activity");
+        if (!json.isNull("last_seen")) {
+            JSONObject o = json.optJSONObject("last_seen");
+            if (!o.isNull("time")) {
+                user.lastSeen = o.optLong("time");
+            }
+        }
+        if (!json.isNull("relation"))
+            user.relation = json.optInt("relation");
+
+        // Add counters
+
+        if (!json.isNull("nickname"))
 			user.nickName = json.optString("nickname");
-		}
-		if (!json.isNull("nickname")) {
-			user.nickName = json.optString("nickname");
-		}
-		if (!json.isNull("online")) {
-			user.isOnline = json.optInt("online") == 1;
-		}
-		if (!json.isNull("online_mobile")) {
-			user.isOnlineMobile = json.optInt("online_mobile") == 1;
-		}
-		if (!json.isNull("sex")) {
-			user.sex = json.optInt("sex");
-		}
-		if (!json.isNull("bdate")) {
-			user.birthDate = json.optString("bdate");
-		}
-		if (!json.isNull("city")) {
-			user.cityCode = json.optInt("city");
-		}
-		if (!json.isNull("country")) {
-			user.countryCode = json.optInt("country");
-		}
-		if (!json.isNull("timezone")) {
-			user.timezone = json.optInt("timezone");
-		}
-		if (!json.isNull("photo")) {
-			user.photoUrl = json.optString("photo");
-		}
-		if (!json.isNull("photo_medium")) {
-			user.photoMediumUrl = json.optString("photo_medium");
-		}
-		if (!json.isNull("photo_medium_rec")) {
-			user.photoMediumRecUrl = json.optString("photo_medium_rec");
-		}
-		if (!json.isNull("photo_medium_rec")) {
-			user.photoMediumRecUrl = json.optString("photo_medium_rec");
-		}
-		if (!json.isNull("photo_big")) {
-			user.photoBigUrl = json.optString("photo_big");
-		}
-		if (!json.isNull("photo_rec")) {
-			user.photoRecUrl = json.optString("photo_rec");
-		}
-		if (!json.isNull("has_mobile")) {
-			user.isHasMobilePhone = json.optInt("has_mobile") == 1;
-		}
-		if (!json.isNull("screen_name")) {
-			user.screenName = json.optString("screen_name");
-		}
-		if (!json.isNull("rate")) {
-			user.rate = json.optString("rate");
-		}
-		if (!json.isNull("activity")) {
-			user.activity = json.optString("activity");
-		}
-		if (!json.isNull("last_seen")) {
-			JSONObject o = json.optJSONObject("last_seen");
-			if (!o.isNull("time")) {
-				user.lastSeen = o.optLong("time");
-			}
-		}
-		if (!json.isNull("mobile_phone")) {
-			user.mobilePhoneNumber = json.optString("mobile_phone");
-		}
-		if (!json.isNull("home_phone")) {
-			user.homePhoneNumber = json.optString("home_phone");
-		}
+
+        // Add exports
+
+        // Add wall_comments
+
+        // Add interests
+
+        // Add movies
+
+        // Add tv
+
+        // Add books
+
+        // Add games
+
+        // Add about
+
+        // Add connections
+
 		return user;
 	}
 	

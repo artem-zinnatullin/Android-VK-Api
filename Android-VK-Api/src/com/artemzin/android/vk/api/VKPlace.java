@@ -18,12 +18,12 @@ public class VKPlace {
 	public String title;
 	
 	/**
-	 * Place country id
+	 * Place country uId
 	 */
 	public long countryId;
 	
 	/**
-	 * City id
+	 * City uId
 	 */
 	public long cityId;
 	

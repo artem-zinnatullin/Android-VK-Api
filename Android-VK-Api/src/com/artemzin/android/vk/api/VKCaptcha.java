@@ -9,7 +9,7 @@ package com.artemzin.android.vk.api;
 public class VKCaptcha {
 	
 	/**
-	 * VKCaptcha session id
+	 * VKCaptcha session uId
 	 */
 	public final String captchaSId;
 	
@@ -20,7 +20,7 @@ public class VKCaptcha {
 	
 	/**
 	 * Creating new VKCaptcha object
-	 * @param captchaSId captcha session id
+	 * @param captchaSId captcha session uId
 	 * @param captchaImgResource captcha image resource
 	 */
 	public VKCaptcha(String captchaSId, String captchaImgResource) {

@@ -286,10 +286,10 @@ public class VKApi {
 	/**
 	 * Gets user`s friends
 	 * @see <a href="http://vk.com/developers.php?o=-1&p=friends.get">VK Frieds api</a>
-	 * @param userId null if want to get current authorized user`s friends, or user id of user, whose friends you want to get.
+	 * @param userId null if want to get current authorized user`s friends, or user uId of user, whose friends you want to get.
 	 * @param fields to request.
 	 *        If null, will get first_name, last_name, photo_medium, online
-	 * @param lId id of friends list of current user
+	 * @param lId uId of friends list of current user
 	 * @throws Exception 
 	 * @throws VKException 
 	 * @throws IOException 
@@ -436,7 +436,7 @@ public class VKApi {
 	 * @throws IllegalArgumentException
 	 */
 	public ArrayList<VKMessage> getMessagesHistory(long userIdOrChatId, Long offset, Long count, Long startMessageId, Boolean reverse) throws Exception {
-		VKUtils.checkToBePositiveValue("userId", userIdOrChatId);
+		VKUtils.checkToBePositiveValue("uId", userIdOrChatId);
 		VKUtils.checkToBePositiveValue("offset", offset);
 		VKUtils.checkToBePositiveValue("count", count);
 		VKUtils.checkToBePositiveValue("startMessageId", startMessageId);
@@ -473,7 +473,7 @@ public class VKApi {
 	/**
 	 * Gets last messages in dialogs
 	 * @see <a href="http://vk.com/pages?oid=-1&p=messages.getDialogs">VK Messages getDialogs</a>
-	 * @param userId null by default or userId whose last message you want to get
+	 * @param userId null by default or uId whose last message you want to get
 	 * @param chatId null by default or chatId which last message you want to get
 	 * @param offset null by default or offset to get messages
 	 * @param count null by default or count of last messages you want to get
@@ -484,7 +484,7 @@ public class VKApi {
 	 * @throws IOException 
 	 */
 	public ArrayList<VKMessage> getDialogs(Long userId, Long chatId, Long offset, Long count, Long previewLength) throws Exception {
-		VKUtils.checkToBePositiveValue("userId", userId);
+		VKUtils.checkToBePositiveValue("uId", userId);
 		VKUtils.checkToBePositiveValue("chatId", chatId);
 		VKUtils.checkToBePositiveValue("offset", offset);
 		VKUtils.checkToBePositiveValue("count", count);
@@ -542,7 +542,7 @@ public class VKApi {
 	}
 	
 	/**
-	 * Gets group by id
+	 * Gets group by uId
 	 * @param gIds of groups to get, use long[] or String[], cannot be null
 	 * @param fields put null to get all fields, or check out: http://vk.com/pages?oid=-1&p=%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80_fields_%D0%B4%D0%BB%D1%8F_%D0%B3%D1%80%D1%83%D0%BF%D0%BF
 	 * @throws Exception 

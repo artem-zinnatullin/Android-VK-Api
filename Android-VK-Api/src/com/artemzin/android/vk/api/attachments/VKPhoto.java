@@ -7,7 +7,7 @@ package com.artemzin.android.vk.api.attachments;
 public class VKPhoto {
 
     /**
-     * Photo id
+     * Photo uId
      */
     public long pId;
 }

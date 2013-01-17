@@ -79,7 +79,7 @@ public class VKNewsItem {
 	
 	/**
 	 * If news was copied from somebody`s wall, 
-	 * it will contain author userId
+	 * it will contain author uId
 	 */
 	public long copyOwnerId;
 	

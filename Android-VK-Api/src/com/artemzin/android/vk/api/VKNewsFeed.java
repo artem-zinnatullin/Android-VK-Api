@@ -20,19 +20,19 @@ public class VKNewsFeed {
 	public ArrayList<VKNewsItem> items = new ArrayList<VKNewsItem>();
 	
 	/**
-	 * Users, whose id`s in source of some news items 
+	 * Users, whose uId`s in source of some news items
 	 */
 	public ArrayList<VKUser> profiles = new ArrayList<VKUser>();
 	
 	/**
-	 * Groups, whose id`s in source of some news items
+	 * Groups, whose uId`s in source of some news items
 	 */
 	public ArrayList<VKGroup> groups = new ArrayList<VKGroup>();
 	
 	/**
 	 * Parsing VKNewsFeed from JSONObject
 	 * @param json to parse from
-	 * @return VKNewsFeed with feed items, null if error occured
+	 * @return VKNewsFeed with feed items, null if error occurred
 	 */
 	public static VKNewsFeed parseFromJSON(JSONObject json) {
 		VKNewsFeed newsFeed = new VKNewsFeed();

@@ -297,7 +297,7 @@ public class VKApi {
 	public ArrayList<VKUser> getFriends(Long userId, String[] fields, Long lId) throws Exception {
 		VKRequestParams params = new VKRequestParams("friends.get");
 		if (fields == null) {
-			fields = new String[] {"first_name", "last_name", "photo_medium_rec", "online", "sex", "activity", "last_seen"};
+			fields = new String[] {"first_name", "last_name", "sex", "photo_100", "online", "activity", "last_seen"};
 		}
 		StringBuilder fieldsAsString = new StringBuilder();
 		for (int i = 0; i < fields.length; i++) {

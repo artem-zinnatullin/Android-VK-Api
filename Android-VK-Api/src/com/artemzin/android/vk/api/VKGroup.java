@@ -100,16 +100,6 @@ public class VKGroup {
      * Group`s activity status or start date of event
      */
     public String activity;
-
-	{
-		// To prevent NullPointerException
-		name = "";
-		screenName = "";
-		description = "";
-		photo = "";
-		photoMedium = "";
-		photoBig = "";
-	}
 	
 	/**
 	 * Parsing json object and creating VKGroup object

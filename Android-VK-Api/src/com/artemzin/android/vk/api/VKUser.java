@@ -234,8 +234,8 @@ public class VKUser {
             user.photoMaxOrig = json.optString("photo_max_orig");
         if (!json.isNull("online"))
             user.online = json.optInt("online") == 1;
-        if (!json.isNull("online_mobile"))
-            user.onlineMobile = json.optInt("online_mobile") == 1;
+        if (json.has("online_mobile"))
+            user.onlineMobile = true;
         if (!json.isNull("online_app"))
             user.onlineApp = json.optLong("online_app");
 

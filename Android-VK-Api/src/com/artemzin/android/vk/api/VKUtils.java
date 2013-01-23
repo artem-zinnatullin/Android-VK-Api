@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.util.List;
 
 import org.json.JSONObject;
 
@@ -101,7 +102,7 @@ public class VKUtils {
 	}
 	
 	/**
-	 * Converting array elements to one string with commas
+	 * Converting array to string with commas between array elements
 	 * @param array to convert
 	 * @return array converted to string
 	 */
@@ -116,4 +117,20 @@ public class VKUtils {
 		}
 		return buffer.toString();
 	}
+
+    /**
+     * Converting List to string with commas between list elements
+     * @param list to convert
+     * @return converted string
+     */
+    public static <E> String listToParams(List<E> list) {
+        StringBuilder buffer = new StringBuilder();
+        for (int i = 0; i < list.size(); i++) {
+            if (i != list.size() -1)
+                buffer.append(list.get(i).toString()).append(",");
+            else
+                buffer.append(list.get(i).toString());
+        }
+        return buffer.toString();
+    }
 }

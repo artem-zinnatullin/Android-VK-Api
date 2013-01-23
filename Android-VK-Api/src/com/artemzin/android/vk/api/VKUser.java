@@ -11,6 +11,19 @@ import org.json.JSONObject;
 public class VKUser {
 
     /**
+     * firstName and lastName name cases
+     * could be used as param in some api methods
+     */
+    public enum NameCase {
+        nom,
+        gen,
+        dat,
+        acc,
+        ins,
+        abl,
+    }
+
+    /**
      * Information update time, needed for most apps
      */
     public Long updateTime;
@@ -296,5 +309,5 @@ public class VKUser {
 
 		return user;
 	}
-	
+
 }

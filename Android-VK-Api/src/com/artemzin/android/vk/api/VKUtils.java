@@ -133,4 +133,18 @@ public class VKUtils {
         }
         return buffer.toString();
     }
+
+    /**
+     * Needed to convert result of JSON Array object parsing to Long
+     * @param object to convert
+     * @return Long object if success, null otherwise
+     */
+    public static Long convertObjectToLong(Object object) {
+        if (object instanceof Integer)
+            return ((Integer) object).longValue();
+        else if (object instanceof Long)
+            return (Long) object;
+        else
+            return null;
+    }
 }

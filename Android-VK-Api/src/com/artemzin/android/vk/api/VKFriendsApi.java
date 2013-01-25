@@ -1,6 +1,7 @@
 package com.artemzin.android.vk.api;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.security.InvalidParameterException;
@@ -44,7 +45,9 @@ public class VKFriendsApi {
         ArrayList<Long> friendsIds = new ArrayList<Long>(jsonFriendsIds.length());
 
         for (int i = 0; i < jsonFriendsIds.length(); i++) {
-            friendsIds.add((Long)jsonFriendsIds.get(i));
+            Long friendUId = VKUtils.convertObjectToLong(jsonFriendsIds.get(i));
+            if (friendUId != null)
+                friendsIds.add(friendUId);
         }
 
         return friendsIds;
@@ -53,7 +56,7 @@ public class VKFriendsApi {
     /**
      * Gets friends list of user
      * @param uId of user to get his friends, put null if you want to get friends of current user, null is allowed
-     * @param fields of friends to get, null is denied
+     * @param fields of friends to get, put null if you want to get default fields VKUser.uId, VKUser.firstName, VKUser.lastName
      * @param nameCase of VKUser.firstName and VKUser.lastName fields, null is allowed
      * @param count of friends to get, put null if you want to get all friends, null is allowed
      * @param offset for selecting a subset of friends, null is allowed
@@ -72,7 +75,7 @@ public class VKFriendsApi {
             params.putParam("uid", uId.toString());
 
         if (fields == null)
-            throw new IllegalArgumentException("fields param could not be null");
+            params.putParam("fields", VKUtils.arrayToParams(new String[] {"uid", "first_name", "last_name"}));
         else
             params.putParam("fields", VKUtils.arrayToParams(fields));
 
@@ -107,7 +110,7 @@ public class VKFriendsApi {
     }
 
     /**
-     * Gets list of friends uIds, who installed this application
+     * Gets list of current user`s friends uIds, who installed this application
      * @return ArrayList of friends uIds, or null if answer from vk.com was incorrect
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=friends.getAppUsers">Documentation on vk.com</a>
@@ -123,7 +126,9 @@ public class VKFriendsApi {
         ArrayList<Long> friendsAppUsersUIds = new ArrayList<Long>(jsonFriendsAppUsersUIds.length());
 
         for (int i = 0; i < jsonFriendsAppUsersUIds.length(); i++) {
-            friendsAppUsersUIds.add((Long) jsonFriendsAppUsersUIds.get(i));
+            Long friendAppUserUId = VKUtils.convertObjectToLong(jsonFriendsAppUsersUIds.get(i));
+            if (friendAppUserUId != null)
+                friendsAppUsersUIds.add(friendAppUserUId);
         }
 
         return friendsAppUsersUIds;
@@ -150,7 +155,9 @@ public class VKFriendsApi {
         ArrayList<Long> onlineFriendsUIds = new ArrayList<Long>(jsonOnlineFriendsUIds.length());
 
         for (int i = 0; i < jsonOnlineFriendsUIds.length(); i++) {
-            onlineFriendsUIds.add((Long) jsonOnlineFriendsUIds.get(i));
+            Long onlineFriendUId = VKUtils.convertObjectToLong(jsonOnlineFriendsUIds.get(i));
+            if (onlineFriendUId != null)
+                onlineFriendsUIds.add(onlineFriendUId);
         }
 
         return onlineFriendsUIds;
@@ -183,7 +190,9 @@ public class VKFriendsApi {
         ArrayList<Long> mutualFriendsUIds = new ArrayList<Long>(jsonMutualFriendsUIds.length());
 
         for (int i = 0; i < jsonMutualFriendsUIds.length(); i++) {
-            mutualFriendsUIds.add((Long) jsonMutualFriendsUIds.get(i));
+            Long mutualFriendUId = VKUtils.convertObjectToLong(jsonMutualFriendsUIds.get(i));
+            if (mutualFriendUId != null)
+                mutualFriendsUIds.add(mutualFriendUId);
         }
 
         return mutualFriendsUIds;
@@ -223,8 +232,12 @@ public class VKFriendsApi {
                 friendShipStatus.uId = json.optLong("uid");
             if (!json.isNull("friend_status"))
                 friendShipStatus.friendStatus = json.optInt("friend_status");
-            if (!json.isNull("request_message"))
-                friendShipStatus.requestMessage = json.optString("request_message");
+            try {
+                friendShipStatus.requestMessage = json.getString("request_message");
+            } catch (JSONException ignored) {
+                // To keep requestMessage null, if no request_message exists
+                // Because json.optString() return "" if no such mapping exists
+            }
             return friendShipStatus;
         }
     }

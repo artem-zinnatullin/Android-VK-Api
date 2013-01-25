@@ -11,6 +11,67 @@ import org.json.JSONObject;
 public class VKUser {
 
     /**
+     * All fields, which are supported at the moment by this library
+     * Needed for VKApi queries
+     * @see VKApi2#friends
+     * @see VKApi2#users
+     * @see <a href="http://vk.com/developers.php?oid=-1&p=%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BF%D0%BE%D0%BB%D0%B5%D0%B9_%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D0%B0_fields">
+     *     Documentation on vk.com</a>
+     */
+    public final static String[] ALL_FIELDS = {
+            "uid",
+            "first_name",
+            "last_name",
+            "sex",
+            "bdate",
+            "city",
+            "country",
+            "photo_50",
+            "photo_100",
+            "photo_200_orig",
+            "photo_200",
+            "photo_400_orig",
+            "photo_max",
+            "photo_max_orig",
+            "online",
+
+            // "lists", Not supported at the moment
+
+            "screen_name",
+            "has_mobile",
+
+            // Not supported at the moment
+            // "contacts,"
+            // "education",
+            // "universities",
+            // "schools",
+            // "can_post",
+            // "can_see_all_posts",
+            // "can_write_private_message",
+
+            "activity",
+            "last_seen",
+            "relation",
+
+            // Not supported at the moment
+            // "counters",
+
+            "nickname",
+
+            // Not supported at the moment
+            // "exports",
+            // "wall_comments",
+            // "relatives",
+            // "interests",
+            // "movies",
+            // "tv",
+            // "books",
+            // "games",
+            // "about",
+            // "connections",
+    };
+
+    /**
      * firstName and lastName name cases
      * could be used as param in some api methods
      */

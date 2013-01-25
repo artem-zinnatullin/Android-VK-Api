@@ -50,7 +50,7 @@ class VKUsersApi {
      * @param fields of users to get,
      *               put null if you want to get default fields only: VKUser.uId, VKUser.firstName, VKUser.lastName, null is allowed
      * @param nameCase of VKUser.firstName and VKUser.lastName which you needed, put null if you want to use default: VKUser.NameCase.nom, null is allowed
-     * @return ArrayList with VKUsers, never returns null
+     * @return ArrayList of VKUsers, or null if answer from vk.com was incorrect
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=users.get">Documentation on vk.com</a>
      * @see com.artemzin.android.vk.api.VKUser
@@ -78,10 +78,10 @@ class VKUsersApi {
 
         JSONArray jsonUsers = api.sendRequest(params).optJSONArray("response");
 
-        ArrayList<VKUser> users = new ArrayList<VKUser>();
-
         if (jsonUsers == null)
-            return users;
+            return null;
+
+        ArrayList<VKUser> users = new ArrayList<VKUser>(jsonUsers.length());
 
         for (int i = 0; i < jsonUsers.length(); i++) {
             JSONObject jsonUser = (JSONObject) jsonUsers.get(i);
@@ -97,7 +97,7 @@ class VKUsersApi {
      * @param count of users to get, maximum is 1000, put null to use default value == 20,
      *              I do not know why, but sometimes vk.com sent only 18 users
      * @param offset to select specific subset
-     * @return ArrayList of VKUsers found
+     * @return ArrayList of VKUsers found, or null if answer from vk.com was incorrect
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=users.search">Documentation on vk.com</a>
      */
@@ -127,10 +127,10 @@ class VKUsersApi {
 
         JSONArray jsonUsers = api.sendRequest(params).optJSONArray("response");
 
-        ArrayList<VKUser> users = new ArrayList<VKUser>();
-
         if (jsonUsers == null)
-            return users;
+            return null;
+
+        ArrayList<VKUser> users = new ArrayList<VKUser>(jsonUsers.length() - 1);
 
         // Skipping zero element, it contains count of users
         for (int i = 1; i < jsonUsers.length(); i++) {

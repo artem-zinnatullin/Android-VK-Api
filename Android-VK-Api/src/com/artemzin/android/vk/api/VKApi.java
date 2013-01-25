@@ -9,6 +9,10 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.zip.GZIPInputStream;
 
+import com.artemzin.android.vk.api.elements.VKGroup;
+import com.artemzin.android.vk.api.elements.VKMessage;
+import com.artemzin.android.vk.api.elements.VKNewsFeed;
+import com.artemzin.android.vk.api.elements.VKUser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

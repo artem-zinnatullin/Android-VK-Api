@@ -1,5 +1,6 @@
 package com.artemzin.android.vk.api;
 
+import com.artemzin.android.vk.api.elements.VKUser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -53,8 +54,8 @@ class VKUsersApi {
      * @return ArrayList of VKUsers, or null if answer from vk.com was incorrect
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=users.get">Documentation on vk.com</a>
-     * @see com.artemzin.android.vk.api.VKUser
-     * @see com.artemzin.android.vk.api.VKUser.NameCase
+     * @see com.artemzin.android.vk.api.elements.VKUser
+     * @see com.artemzin.android.vk.api.elements.VKUser.NameCase
      */
     public ArrayList<VKUser> get(ArrayList<Long> uIds,
                                  String[] fields,

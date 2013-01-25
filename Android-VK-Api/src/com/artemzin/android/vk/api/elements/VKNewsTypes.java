@@ -1,4 +1,4 @@
-package com.artemzin.android.vk.api;
+package com.artemzin.android.vk.api.elements;
 
 /**
  * Types of news in vk.com

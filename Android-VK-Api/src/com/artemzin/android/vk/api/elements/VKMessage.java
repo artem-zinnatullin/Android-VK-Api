@@ -1,7 +1,8 @@
-package com.artemzin.android.vk.api;
+package com.artemzin.android.vk.api.elements;
 
 import java.util.ArrayList;
 
+import com.artemzin.android.vk.api.VKUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

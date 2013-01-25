@@ -1,5 +1,6 @@
 package com.artemzin.android.vk.api;
 
+import com.artemzin.android.vk.api.elements.VKUser;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

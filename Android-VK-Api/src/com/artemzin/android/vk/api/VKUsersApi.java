@@ -94,7 +94,8 @@ class VKUsersApi {
      * Gets list of users found
      * @param q string to search, null is denied
      * @param fields to get, put null to get VKUser.uId, VKUser.firstName and VKUser.lastName by default
-     * @param count of users to get, maximum is 1000, put null to use default value == 20
+     * @param count of users to get, maximum is 1000, put null to use default value == 20,
+     *              I do not know why, but sometimes vk.com sent only 18 users
      * @param offset to select specific subset
      * @return ArrayList of VKUsers found
      * @throws Exception if something goes wrong

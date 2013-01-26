@@ -1,4 +1,4 @@
-package com.artemzin.android.vk.api.attachments;
+package com.artemzin.android.vk.api.elements.attachments;
 
 /**
  * Attachment class

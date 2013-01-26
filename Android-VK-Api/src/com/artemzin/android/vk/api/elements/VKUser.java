@@ -3,7 +3,7 @@ package com.artemzin.android.vk.api.elements;
 import org.json.JSONObject;
 
 /**
- * VK VKUser class
+ * VKUser class
  * @author Artem Zinnatullin
  * @see <a href="http://vk.com/developers.php?oid=-1&p=%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BF%D0%BE%D0%BB%D0%B5%D0%B9_%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D0%B0_fields">
  *     VK User docs</a>
@@ -353,20 +353,6 @@ public class VKUser {
     // TODO Add about
 
     // TODO Add connections
-
-    private Integer isFriend;
-
-    /**
-     * Is user a friend <br/>
-     * 0 is not a friend <br/>
-     * 1 was sent request to be friends <br/>
-     * 2 incoming request to be friends from other user <br/>
-     * 3 is a friend
-     * @see <a href="https://vk.com/developers.php?oid=-1&p=friends.areFriends">VK isFriend docs</a>
-     */
-    public Integer getIsFriend() {
-        return isFriend;
-    }
 
     /**
 	 * Parsing VKUser object from JSON

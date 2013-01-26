@@ -7,101 +7,165 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Vk.com group object
+ * Vk.com group object <br/>
  * @author Artem Zinnatullin
  * @see <a href="http://vk.com/developers.php?oid=-1&p=%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80_fields_%D0%B4%D0%BB%D1%8F_%D0%B3%D1%80%D1%83%D0%BF%D0%BF">VK Groups documentation</a>
  */
 public class VKGroup {
 
+    private Long updateTime;
+
     /**
      * Information update time, needed for most apps
      */
-    public Long updateTime;
+    public Long getUpdateTime() {
+        return updateTime;
+    }
 
-	/**
-	 * Group id
-	 */
-	public Long gId;
+    private Long gId;
+
+    /**
+     * Group id
+     */
+    public Long getGId() {
+        return gId;
+    }
+
+    private String name;
 
     /**
      * Group name
      */
-    public String name;
+    public String getName() {
+        return name;
+    }
+
+    private Boolean isClosed;
 
     /**
      * Is group closed
      */
-    public Boolean isClosed;
+    public Boolean getIsClosed() {
+        return isClosed;
+    }
+
+    private Boolean isAdmin;
 
     /**
      * Is current user admin of this group
      */
-    public Boolean isAdmin;
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    private String photo;
 
     /**
      * Url to 50 * 50 px group photo
      */
-    public String photo;
+    public String getPhoto() {
+        return photo;
+    }
+
+    private String photoMedium;
 
     /**
      * Url to 100 * 100 px group photo
      */
-    public String photoMedium;
+    public String getPhotoMedium() {
+        return photoMedium;
+    }
+
+    private String photoBig;
 
     /**
      * Url to 250 * 250 px group photo
      */
-    public String photoBig;
+    public String getPhotoBig() {
+        return photoBig;
+    }
+
+    private String screenName;
 
     /**
      * Group screen name
      */
-    public String screenName;
+    public String getScreenName() {
+        return screenName;
+    }
+
+    private Long city;
 
     /**
      * Id of group`s city
      */
-    public Long city;
+    public Long getCity() {
+        return city;
+    }
+
+    private Long country;
 
     /**
      * Id of group`s country
      */
-    public Long country;
+    public Long getCountry() {
+        return country;
+    }
 
     // TODO Add place
+
+    private String description;
 
     /**
      * Group description
      */
-    public String description;
+    public String getDescription() {
+        return description;
+    }
+
+    private String wikiPage;
 
     /**
      * Name of main wiki page of group
      */
-    public String wikiPage;
+    public String getWikiPage() {
+        return wikiPage;
+    }
+
+    private Long membersCount;
 
     /**
      * Count of group members
      */
-    public Long membersCount;
-	
+    public Long getMembersCount() {
+        return membersCount;
+    }
+
     // TODO Add counters
 
     // TODO Add start_date
 
     // TODO Add end_date
 
+    private Boolean canPost;
+
     /**
      * Is current user able to post on group wall
      */
-    public Boolean canPost;
+    public Boolean getCanPost() {
+        return canPost;
+    }
+
+    private String activity;
 
     /**
      * Group`s activity status or start date of event
      */
-    public String activity;
-	
-	/**
+    public String getActivity() {
+        return activity;
+    }
+
+    /**
 	 * Parsing json object and creating VKGroup object
 	 * @param json object to parse from
 	 * @return VKGroup with fields from json

@@ -13,8 +13,8 @@ public class VKUser {
     /**
      * All fields, which are supported at the moment by this library
      * Needed for VKApi queries
-     * @see com.artemzin.android.vk.api.VKApi2#friends
-     * @see com.artemzin.android.vk.api.VKApi2#users
+     * @see com.artemzin.android.vk.api.VKApi#friends
+     * @see com.artemzin.android.vk.api.VKApi#users
      * @see <a href="http://vk.com/developers.php?oid=-1&p=%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BF%D0%BE%D0%BB%D0%B5%D0%B9_%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D0%B0_fields">
      *     Documentation on vk.com</a>
      */

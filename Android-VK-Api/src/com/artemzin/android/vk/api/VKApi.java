@@ -11,12 +11,12 @@ import java.security.InvalidParameterException;
 import java.util.zip.GZIPInputStream;
 
 /**
- * VKApi class
+ * Main VKApi class
  * Use it to work with vk.com api
  * @author Artem Zinnatullin
  * @see <a href="http://vk.com/developers.php">VK Api Documentation</a>
  */
-public class VKApi2 {
+public class VKApi {
 
     /**
      * Use it to work with users api
@@ -28,6 +28,9 @@ public class VKApi2 {
      */
     public final VKFriendsApi friends = new VKFriendsApi(this);
 
+    /**
+     * For LogCat messages
+     */
     private final static String TAG;
 
     /**
@@ -97,7 +100,7 @@ public class VKApi2 {
      * Creating vk.com api instance
      * @param accessToken user access token, needed for queries
      */
-    public VKApi2(String accessToken) {
+    public VKApi(String accessToken) {
         this.accessToken = accessToken;
     }
 

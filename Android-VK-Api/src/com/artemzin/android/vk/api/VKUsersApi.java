@@ -13,9 +13,9 @@ import java.util.ArrayList;
  */
 class VKUsersApi {
 
-    private final VKApi2 api;
+    private final VKApi api;
 
-    VKUsersApi(VKApi2 api) {
+    VKUsersApi(VKApi api) {
         this.api = api;
     }
 

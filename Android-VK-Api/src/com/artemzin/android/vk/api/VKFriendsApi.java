@@ -14,9 +14,9 @@ import java.util.ArrayList;
  */
 public class VKFriendsApi {
 
-    private final VKApi2 api;
+    private final VKApi api;
 
-    VKFriendsApi (VKApi2 api) {
+    VKFriendsApi (VKApi api) {
         this.api = api;
     }
 

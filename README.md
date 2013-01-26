@@ -7,8 +7,9 @@
 
 All methods has same parameters as their originals on api.vk.com
 
-###*Pavel Durov says:* 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; «Best Android vk.com api implementation I ever seen!» (little joke)
+###*Pavel Durov says:*
+![Pavel Durov] (http://files.artemzin.ru/img/durov.png)
+&nbsp;&nbsp;&nbsp;&nbsp;«Best Android vk.com api implementation I ever seen!» (little joke)
 
 -----
 

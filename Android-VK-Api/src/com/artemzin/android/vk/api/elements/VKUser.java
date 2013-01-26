@@ -11,14 +11,14 @@ import org.json.JSONObject;
 public class VKUser {
 
     /**
-     * All fields, which are supported at the moment by this library
-     * Needed for VKApi queries
+     * All fields, which are supported at the moment by this library <br/>
+     * Needed for VKApi queries <br/>
      * @see com.artemzin.android.vk.api.VKApi#friends
      * @see com.artemzin.android.vk.api.VKApi#users
      * @see <a href="http://vk.com/developers.php?oid=-1&p=%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BF%D0%BE%D0%BB%D0%B5%D0%B9_%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D0%B0_fields">
      *     Documentation on vk.com</a>
      */
-    public final static String[] ALL_FIELDS = {
+    public static final String[] ALL_FIELDS = {
             "uid",
             "first_name",
             "last_name",
@@ -72,7 +72,7 @@ public class VKUser {
     };
 
     /**
-     * firstName and lastName name cases
+     * firstName and lastName name cases <br/>
      * could be used as param in some api methods
      */
     public enum NameCase {
@@ -84,115 +84,195 @@ public class VKUser {
         abl,
     }
 
+    private Long updateTime;
+
     /**
      * Information update time, needed for most apps
      */
-    public Long updateTime;
+    public Long getUpdateTime() {
+        return updateTime;
+    }
+
+    private Long uId;
 
     /**
-	 * vk.com user id
-	 */
-	public Long uId;
+     * vk.com user id
+     */
+    public Long getUId() {
+        return uId;
+    }
+
+    private String firstName;
 
     /**
      * First name
      */
-    public String firstName;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    private String lastName;
 
     /**
      * Last name
      */
-    public String lastName;
+    public String getLastName() {
+        return lastName;
+    }
+
+    private Integer sex;
 
     /**
-     * User`s sex
-     * 1 - female
-     * 2 - male
+     * User`s sex <br/>
+     * 1 - female <br/>
+     * 2 - male <br/>
      * 0 - unknown
      */
-    public Integer sex;
+    public Integer getSex() {
+        return sex;
+    }
+
+    private String bDate;
 
     /**
-     * Birthday date
+     * Birthday date <br/>
      * For example: "23.11.1981" or "21.9" if year is hidden
      */
-    public String bDate;
+    public String getBDate() {
+        return bDate;
+    }
+
+    private Long city;
 
     /**
      * Id of user`s city
      * @see com.artemzin.android.vk.api.VKApi# getCities
      */
-    public Long city;
+    public Long getCity() {
+        return city;
+    }
+
+    private Long country;
 
     /**
      * Id of user`s country
      * @see com.artemzin.android.vk.api.VKApi# getCountries
      */
-    public Long country;
+    public Long getCountry() {
+        return country;
+    }
+
+    private String photo50;
 
     /**
      * Url to square photo with width == height == 50px
      */
-    public String photo50;
+    public String getPhoto50() {
+        return photo50;
+    }
+
+    private String photo100;
 
     /**
      * Url to square photo with width == height == 100px
      */
-    public String photo100;
+    public String getPhoto100() {
+        return photo100;
+    }
+
+    private String photo200Orig;
 
     /**
      * Url to not necessarily square photo with width = 200px
      */
-    public String photo200Orig;
+    public String getPhoto200Orig() {
+        return photo200Orig;
+    }
+
+    private String photo200;
 
     /**
      * Url to square photo with width == height == 200px
      */
-    public String photo200;
+    public String getPhoto200() {
+        return photo200;
+    }
+
+    private String photo400Orig;
 
     /**
      * Url to not necessarily square photo with width == 400px
      */
-    public String photo400Orig;
+    public String getPhoto400Orig() {
+        return photo400Orig;
+    }
+
+    private String photoMax;
 
     /**
      * Url to square photo with maximum of possible resolution
      */
-    public String photoMax;
+    public String getPhotoMax() {
+        return photoMax;
+    }
+
+    private String photoMaxOrig;
 
     /**
      * Url to not necessarily square photo with maximum of possible resolution
      */
-    public String photoMaxOrig;
+    public String getPhotoMaxOrig() {
+        return photoMaxOrig;
+    }
+
+    private Boolean online;
 
     /**
      * Is user online
      */
-    public Boolean online;
+    public Boolean getOnline() {
+        return online;
+    }
+
+    private Boolean onlineMobile;
 
     /**
      * If user is online from mobile device
      */
-    public Boolean onlineMobile;
+    public Boolean getOnlineMobile() {
+        return onlineMobile;
+    }
+
+    private Long onlineApp;
 
     /**
-     * Id of application, from which user is online
-     * True only if user using some application, not web site
+     * Id of application, from which user is online <br/>
+     * Exists only if user using some application, not web site
      */
-    public Long onlineApp;
+    public Long getOnlineApp() {
+        return onlineApp;
+    }
 
     // TODO Add lists
 
+    private String screenName;
+
     /**
-     * Part of link after http://vk.com/...
+     * Part of link after http://vk.com/... <br/>
      * Example: id172672179 or "andrew"
      */
-    public String screenName;
+    public String getScreenName() {
+        return screenName;
+    }
+
+    private Boolean hasMobile;
 
     /**
      * Is user`s mobile phone number known
      */
-    public Boolean hasMobile;
+    public Boolean getHasMobile() {
+        return hasMobile;
+    }
 
     // TODO Add contacts
 
@@ -208,35 +288,51 @@ public class VKUser {
 
     // TODO Add can_write_private_message
 
+    private String activity;
+
     /**
-     * User`s activity status
+     * User`s activity status <br/>
      * Example: "Walking with my friends"
      */
-    public String activity;
+    public String getActivity() {
+        return activity;
+    }
+
+    private Long lastSeen;
 
     /**
      * Last seen time when user was online
      */
-    public Long lastSeen;
+    public Long getLastSeen() {
+        return lastSeen;
+    }
+
+    private Integer relation;
 
     /**
-     * Kind of relationship of user <br>
-     * 1 - Single <br>
-     * 2 - have a boyfriend / girlfriend <br>
-     * 3 - Engaged <br>
-     * 4 - Married <br>
-     * 5 - It is difficult <br>
-     * 6 - In active search <br>
-     * 7 - In love <br>
+     * Kind of relationship of user <br/>
+     * 1 - Single <br/>
+     * 2 - have a boyfriend / girlfriend <br/>
+     * 3 - Engaged <br/>
+     * 4 - Married <br/>
+     * 5 - It is difficult <br/>
+     * 6 - In active search <br/>
+     * 7 - In love
      */
-    public Integer relation;
+    public Integer getRelation() {
+        return relation;
+    }
 
     // TODO Add counters
+
+    private String nickName;
 
     /**
      * User`s nickname
      */
-    public String nickName;
+    public String getNickName() {
+        return nickName;
+    }
 
     // TODO Add exports
 
@@ -258,17 +354,21 @@ public class VKUser {
 
     // TODO Add connections
 
+    private Integer isFriend;
+
     /**
-     * @see <a href="https://vk.com/developers.php?oid=-1&p=friends.areFriends">VK isFriend docs</a>
-     * Is user a friend
-     * 0 is not a friend
-     * 1 sended request to be friends
-     * 2 incoming request to be friends from outer user
+     * Is user a friend <br/>
+     * 0 is not a friend <br/>
+     * 1 was sent request to be friends <br/>
+     * 2 incoming request to be friends from other user <br/>
      * 3 is a friend
+     * @see <a href="https://vk.com/developers.php?oid=-1&p=friends.areFriends">VK isFriend docs</a>
      */
-    public Integer isFriend;
-	
-	/**
+    public Integer getIsFriend() {
+        return isFriend;
+    }
+
+    /**
 	 * Parsing VKUser object from JSON
 	 * @param json with user`s data
 	 * @return VKUser object with parsed fields

@@ -20,6 +20,9 @@ public class VKFriendsApi {
         this.api = api;
     }
 
+    /**
+     * Order of friends list
+     */
     public enum Order {
         name,
         hints,
@@ -28,7 +31,8 @@ public class VKFriendsApi {
     /**
      * Gets list of friends uIds
      * @param uId which friends uIds you want to get, put null to get friends of current user
-     * @return ArrayList with friends uIds, or null if answer from vk.com was incorrect
+     * @return ArrayList with friends uIds, never return null
+     * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=friends.get">Documentation on vk.com</a>
      */
@@ -41,7 +45,7 @@ public class VKFriendsApi {
         JSONArray jsonFriendsIds = api.sendRequest(params).optJSONArray("response");
 
         if (jsonFriendsIds == null)
-            return null;
+            throw new Exception("Incorrect response from vk.com");
 
         ArrayList<Long> friendsIds = new ArrayList<Long>(jsonFriendsIds.length());
 
@@ -63,7 +67,8 @@ public class VKFriendsApi {
      * @param offset to select a subset of friends, null is allowed
      * @param lId of friends list, you can use this only if uId == uId of current user, null is allowed
      * @param order in which you want to get friends list, null is allowed
-     * @return ArrayList of VKUsers, or null if answer from vk.com was incorrect
+     * @return ArrayList of VKUsers, never return null
+     * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=friends.get">Documentation on vk.com</a>
      */
@@ -98,7 +103,7 @@ public class VKFriendsApi {
         JSONArray jsonFriends = api.sendRequest(params).optJSONArray("response");
 
         if (jsonFriends == null)
-            return null;
+            throw new Exception("Incorrect response from vk.com");
 
         ArrayList<VKUser> friends = new ArrayList<VKUser>(jsonFriends.length());
 
@@ -112,7 +117,8 @@ public class VKFriendsApi {
 
     /**
      * Gets list of current user`s friends uIds, who installed this application
-     * @return ArrayList of friends uIds, or null if answer from vk.com was incorrect
+     * @return ArrayList of friends uIds, never return null
+     * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=friends.getAppUsers">Documentation on vk.com</a>
      */
@@ -122,7 +128,7 @@ public class VKFriendsApi {
         JSONArray jsonFriendsAppUsersUIds = api.sendRequest(params).optJSONArray("response");
 
         if (jsonFriendsAppUsersUIds == null)
-            return null;
+            throw new Exception("Incorrect response from vk.com");
 
         ArrayList<Long> friendsAppUsersUIds = new ArrayList<Long>(jsonFriendsAppUsersUIds.length());
 
@@ -138,7 +144,8 @@ public class VKFriendsApi {
     /**
      * Gets list of online friends uIds
      * @param uId of user, which online friends list you want to get, put null to use uId of current user
-     * @return ArrayList of online friends uIds, or null if answer from vk.com was incorrect
+     * @return ArrayList of online friends uIds, never return null
+     * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=friends.getOnline">Documentation on vk.com</a>
      */
@@ -151,7 +158,7 @@ public class VKFriendsApi {
         JSONArray jsonOnlineFriendsUIds = api.sendRequest(params).optJSONArray("response");
 
         if (jsonOnlineFriendsUIds == null)
-            return null;
+            throw new Exception("Incorrect response from vk.com");
 
         ArrayList<Long> onlineFriendsUIds = new ArrayList<Long>(jsonOnlineFriendsUIds.length());
 
@@ -168,7 +175,8 @@ public class VKFriendsApi {
      * Gets list of mutual friends uIds
      * @param targetUid of user, which mutual friends you want to get, null is denied
      * @param sourceUid of user, to search mutual friends with, put null to use current user uId
-     * @return ArrayList of mutual friends uIds, or null if answer from vk.com was incorrect
+     * @return ArrayList of mutual friends uIds, never return null
+     * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=friends.getMutual">Documentation on vk.com</a>
      */
@@ -186,7 +194,7 @@ public class VKFriendsApi {
         JSONArray jsonMutualFriendsUIds = api.sendRequest(params).optJSONArray("response");
 
         if (jsonMutualFriendsUIds == null)
-            return null;
+            throw new Exception("Incorrect response from vk.com");
 
         ArrayList<Long> mutualFriendsUIds = new ArrayList<Long>(jsonMutualFriendsUIds.length());
 
@@ -205,7 +213,13 @@ public class VKFriendsApi {
      */
     public static class FriendShipStatus {
 
-        public Long uId;
+        private Long uId;
+
+        public Long getUId() {
+            return uId;
+        }
+
+        private Integer friendStatus;
 
         /**
          * 0 - not a friend <br/>
@@ -213,12 +227,18 @@ public class VKFriendsApi {
          * 2 - incoming request/subscription from user <br/>
          * 3 - user is a friend
          */
-        public Integer friendStatus;
+        public Integer getFriendStatus() {
+            return friendStatus;
+        }
+
+        private String requestMessage;
 
         /**
          * If exists request message from/to user, by default is null
          */
-        public String requestMessage;
+        public String getRequestMessage() {
+            return requestMessage;
+        }
 
         private FriendShipStatus() {}
 
@@ -227,7 +247,7 @@ public class VKFriendsApi {
          * @param json to parse
          * @return FriendShipStatus object
          */
-        public static FriendShipStatus parseFromJSON(JSONObject json) {
+        static FriendShipStatus parseFromJSON(JSONObject json) {
             FriendShipStatus friendShipStatus = new FriendShipStatus();
             if (!json.isNull("uid"))
                 friendShipStatus.uId = json.optLong("uid");
@@ -246,7 +266,8 @@ public class VKFriendsApi {
     /**
      * Gets information about friendship status
      * @param uIds of users, which friendship status with current user you want to get, null is denied
-     * @return ArrayList of FriendShipStatus containers, or null if answer from vk.com was incorrect
+     * @return ArrayList of FriendShipStatus containers, never return null
+     * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=friends.areFriends">Documentation on vk.com</a>
      */
@@ -264,7 +285,7 @@ public class VKFriendsApi {
         JSONArray jsonAreFriends = api.sendRequest(params).optJSONArray("response");
 
         if (jsonAreFriends == null)
-            return null;
+            throw new Exception("Incorrect response from vk.com");
 
         ArrayList<FriendShipStatus> friendShipStatuses = new ArrayList<FriendShipStatus>(jsonAreFriends.length());
 

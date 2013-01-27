@@ -60,7 +60,7 @@ public class VKFriendsApi {
      * @param fields of friends to get, put null if you want to get default fields VKUser.uId, VKUser.firstName, VKUser.lastName
      * @param nameCase of VKUser.firstName and VKUser.lastName fields, null is allowed
      * @param count of friends to get, put null if you want to get all friends, null is allowed
-     * @param offset for selecting a subset of friends, null is allowed
+     * @param offset to select a subset of friends, null is allowed
      * @param lId of friends list, you can use this only if uId == uId of current user, null is allowed
      * @param order in which you want to get friends list, null is allowed
      * @return ArrayList of VKUsers, or null if answer from vk.com was incorrect

@@ -19,39 +19,34 @@ import java.util.zip.GZIPInputStream;
 public class VKApi {
 
     /**
-     * Use it to work with users api
-     */
-    public final VKUsersApi users = new VKUsersApi(this);
-
-    /**
-     * Use it to work with friends api
-     */
-    public final VKFriendsApi friends = new VKFriendsApi(this);
-
-    /**
      * For LogCat messages
      */
-    private final static String TAG;
+    private static  String TAG;
 
     /**
      * Main vk.com api url
      */
-    private final static String BASIC_API_URL;
+    private static final String BASIC_API_URL;
 
     /**
      * Default value for gzip compression is disabled
      */
-    public final static boolean GZIP_COMPRESSION_DEFAULT;
+    public static final boolean GZIP_COMPRESSION_DEFAULT;
 
     /**
      * Default query retry limit
      */
-    public final static int QUERY_RETRY_LIMIT_DEFAULT;
+    public static final int QUERY_RETRY_LIMIT_DEFAULT;
 
     /**
      * Default connection timeout in millis
      */
-    public final static int CONNECTION_TIMEOUT_DEFAULT;
+    public static final int CONNECTION_TIMEOUT_DEFAULT;
+
+    /**
+     * Exception message if response from vk.com was incorrect
+     */
+    public static final String EXCEPTION_MESSAGE_INCORRECT_RESPONSE;
 
     static {
         TAG = "VKApi";
@@ -63,6 +58,7 @@ public class VKApi {
         QUERY_RETRY_LIMIT_DEFAULT = 3;
         // By default, connection timeout will be 30 seconds
         CONNECTION_TIMEOUT_DEFAULT = 30000;
+        EXCEPTION_MESSAGE_INCORRECT_RESPONSE = "Incorrect response from vk.com";
     }
 
     /**
@@ -291,4 +287,15 @@ public class VKApi {
             }
         }
     }
+
+    /**
+     * Use it to work with users api
+     */
+    public final VKUsersApi users = new VKUsersApi(this);
+
+    /**
+     * Use it to work with friends api
+     */
+    public final VKFriendsApi friends = new VKFriendsApi(this);
+
 }

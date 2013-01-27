@@ -115,6 +115,9 @@ public class VKGroupsApi {
         return container;
     }
 
+    /**
+     * Container for total groups count and ArrayList of VKGroups
+     */
     public static class VKGroupsWithCountContainer {
         private int count;
         private ArrayList<VKGroup> groups;
@@ -219,6 +222,144 @@ public class VKGroupsApi {
             return null;
 
         return VKGroup.parseFromJSON(jsonGroups);
+    }
+
+    /**
+     * Checks if user is member of group
+     * @param gId short name of group
+     * @param uId of user, information about you want to get
+     * @return true if user is member of needed group
+     * @throws VKException
+     * @throws Exception if something goes wrong
+     * @see <a href="http://vk.com/developers.php?oid=-1&p=groups.isMember">Documentation on vk.com</a>
+     */
+    public boolean isMember(String gId, Long uId) throws Exception {
+        VKRequestParams params = new VKRequestParams("groups.isMember");
+
+        if (gId == null)
+            throw new IllegalArgumentException("gId can not be null");
+        else {
+            if (gId.length() == 0)
+                throw new InvalidParameterException("gId can not be empty");
+            params.putParam("gid", gId);
+        }
+
+        if (uId != null)
+            params.putParam("uid", uId.toString());
+
+        Integer isMember = api.sendRequest(params).optInt("response");
+
+        if (isMember == null)
+            throw new Exception("Incorrect response from vk.com");
+
+        return isMember == 1;
+    }
+
+    /**
+     * Checks if user is member of group
+     * @param gId of group
+     * @param uId of user, information about you want to get
+     * @return true if user is member of needed group
+     * @throws VKException
+     * @throws Exception if something goes wrong
+     * @see <a href="http://vk.com/developers.php?oid=-1&p=groups.isMember">Documentation on vk.com</a>
+     */
+    public boolean isMember(long gId, Long uId) throws Exception {
+        return isMember(String.valueOf(gId), uId);
+    }
+
+    /**
+     * Container for extended isMember request
+     * @see <a href="http://vk.com/developers.php?oid=-1&p=groups.isMember">Documentation on vk.com</a>
+     */
+    public static class IsMemberExtendedContainer {
+        private Boolean member;
+        private Boolean request;
+        private Boolean invitation;
+
+        /**
+         * @return true if user is member of group, could be null
+         */
+        public Boolean getMember() {
+            return member;
+        }
+
+        /**
+         * @return true if there are not accepted requests to join group, could be null
+         */
+        public Boolean getRequst() {
+            return request;
+        }
+
+        /**
+         * @return true if user was invited to group or event, could be null
+         */
+        public Boolean getInvitation() {
+            return invitation;
+        }
+
+        /**
+         * Parsing json and return IsMemberExtendedContainer object
+         * @param jsonObject to parse
+         * @return IsMemberExtendedContainer object
+         */
+        static IsMemberExtendedContainer parseFromJSON(JSONObject jsonObject) {
+            IsMemberExtendedContainer container = new IsMemberExtendedContainer();
+            if (!jsonObject.isNull("member"))
+                container.member = 1 == jsonObject.optInt("member");
+            if (!jsonObject.isNull("request"))
+                container.request = 1 == jsonObject.optInt("request");
+            if (!jsonObject.isNull("invitation"))
+                container.invitation = 1 == jsonObject.optInt("invitation");
+
+            return container;
+        }
+    }
+
+    /**
+     * Gets extended information if user is member of group
+     * @param gId group short name
+     * @param uId of user, information about you want to get
+     * @return IsMemberExtendedContainer with all parsed data, never return null
+     * @throws VKException
+     * @throws Exception if something goes wrong
+     * @see <a href="http://vk.com/developers.php?oid=-1&p=groups.isMember">Documentation on vk.com</a>
+     */
+    public IsMemberExtendedContainer isMemberExtended(String gId, Long uId) throws Exception {
+        VKRequestParams params = new VKRequestParams("groups.isMember");
+
+        if (gId == null)
+            throw new IllegalArgumentException("gId can not be null");
+        else {
+            if (gId.length() == 0)
+                throw new InvalidParameterException("gId can not be empty");
+            params.putParam("gid", gId);
+        }
+
+        if (uId != null)
+            params.putParam("uid", uId.toString());
+
+        params.putParam("extended", "1");
+
+        JSONObject jsonIsMemberExtended = api.sendRequest(params).optJSONObject("response");
+
+        if (jsonIsMemberExtended == null)
+            throw new Exception("Incorrect response from vk.com");
+
+        return IsMemberExtendedContainer.parseFromJSON(jsonIsMemberExtended);
+    }
+
+    /**
+     * Gets extended information if user is member of group
+     * @param gId of group
+     * @param uId of user, information about you want to get
+     * @return IsMemberExtendedContainer with all parsed data, never return null
+     * @throws VKException
+     * @throws Exception if something goes wrong
+     * @see <a href="http://vk.com/developers.php?oid=-1&p=groups.isMember">Documentation on vk.com</a>
+     */
+    public IsMemberExtendedContainer isMemberExtended(long gId, Long uId) throws Exception {
+        return isMemberExtended(String.valueOf(gId), uId);
     }
 
     /**

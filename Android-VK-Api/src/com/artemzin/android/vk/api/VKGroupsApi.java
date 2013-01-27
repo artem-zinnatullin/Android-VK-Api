@@ -34,8 +34,10 @@ public class VKGroupsApi {
      * Container for total gIds count and ArrayList of gIds
      */
     public static class GIdsWithCountContainer {
+
+        private GIdsWithCountContainer() {}
+
         private int count;
-        private ArrayList<Long> gIds;
 
         /**
          * @return total count of gIds, you can use it for offset param in next request
@@ -43,6 +45,8 @@ public class VKGroupsApi {
         public int getCount() {
             return count;
         }
+
+        private ArrayList<Long> gIds;
 
         /**
          * @return ArrayList with gIds
@@ -58,7 +62,7 @@ public class VKGroupsApi {
      * @param filter to select only needed elements, put null to get all groups
      * @param offset to select a subset of groups, null is allowed
      * @param count of groups to get, max value is 1000, null is allowed
-     * @return Container with total gIds count and ArrayList of groups gIds, or null if answer from vk.com was incorrect
+     * @return Container with total gIds count and ArrayList of groups gIds, never returns null
      * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=groups.get">Documentation on vk.com</a>
@@ -86,7 +90,7 @@ public class VKGroupsApi {
         JSONArray jsonGroupsGIds = api.sendRequest(params).optJSONArray("response");
 
         if (jsonGroupsGIds == null)
-            return null;
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
 
         GIdsWithCountContainer container = new GIdsWithCountContainer();
 
@@ -119,8 +123,10 @@ public class VKGroupsApi {
      * Container for total groups count and ArrayList of VKGroups
      */
     public static class VKGroupsWithCountContainer {
+
+        private VKGroupsWithCountContainer() {}
+
         private int count;
-        private ArrayList<VKGroup> groups;
 
         /**
          * @return total count of groups, you can use it for offset param in next request
@@ -128,6 +134,8 @@ public class VKGroupsApi {
         public int getCount() {
             return count;
         }
+
+        private ArrayList<VKGroup> groups;
 
         /**
          * @return ArrayList of VKGroups
@@ -139,19 +147,21 @@ public class VKGroupsApi {
 
     /**
      * Gets groups of needed user <br/>
-     * param extended is missing, because if you put 1 in extended you will get VKGroup objects, else you will get only groups gIds
+     * I am sorry for method name, but this is better than "get" this is implementation of groups.get api<br/>
+     * param extended is missing, because if you put 1 in extended
+     * you will get VKGroup objects, else you will get only groups gIds
      * @param uId of user, whose groups you want to get, put null to use current user`s uId
      * @param filter to select only needed elements, put null to get all groups
      * @param fields of groups to get, put null to get all not extended fields
      * @param offset to select a subset of groups, null is allowed
      * @param count of groups to get, max value is 1000, null is allowed
-     * @return Container with total count of groups and ArrayList of VKGroups, or null if answer from vk.com was incorrect
+     * @return Container with total count of groups and ArrayList of VKGroups, never returns null
      * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=groups.get">Documentation on vk.com</a>
      */
-    public VKGroupsWithCountContainer get(Long uId, Filter[] filter, VKGroup.Fields[] fields,
-                                  Integer offset, Integer count) throws Exception {
+    public VKGroupsWithCountContainer getExtended(Long uId, Filter[] filter, VKGroup.Fields[] fields,
+                                                  Integer offset, Integer count) throws Exception {
         VKRequestParams params = new VKRequestParams("groups.get");
 
         if (uId != null)
@@ -179,7 +189,7 @@ public class VKGroupsApi {
         JSONArray jsonGroups = api.sendRequest(params).optJSONArray("response");
 
         if (jsonGroups == null)
-            return null;
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
 
         VKGroupsWithCountContainer container = new VKGroupsWithCountContainer();
 
@@ -193,7 +203,7 @@ public class VKGroupsApi {
      * Gets needed groups by their gIds
      * @param gIds of groups to get, could not be null, max size == 500
      * @param fields of groups to get
-     * @return ArrayList of VKGroups, or null if answer from vk.com was incorrect
+     * @return ArrayList of VKGroups, never returns null
      * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=groups.getById">Documentation on vk.com</a>
@@ -219,7 +229,7 @@ public class VKGroupsApi {
         JSONArray jsonGroups = api.sendRequest(params).optJSONArray("response");
 
         if (jsonGroups == null)
-            return null;
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
 
         return VKGroup.parseFromJSON(jsonGroups);
     }
@@ -250,7 +260,7 @@ public class VKGroupsApi {
         Integer isMember = api.sendRequest(params).optInt("response");
 
         if (isMember == null)
-            throw new Exception("Incorrect response from vk.com");
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
 
         return isMember == 1;
     }
@@ -273,9 +283,10 @@ public class VKGroupsApi {
      * @see <a href="http://vk.com/developers.php?oid=-1&p=groups.isMember">Documentation on vk.com</a>
      */
     public static class IsMemberExtendedContainer {
+
+        private IsMemberExtendedContainer() {}
+
         private Boolean member;
-        private Boolean request;
-        private Boolean invitation;
 
         /**
          * @return true if user is member of group, could be null
@@ -284,12 +295,16 @@ public class VKGroupsApi {
             return member;
         }
 
+        private Boolean request;
+
         /**
          * @return true if there are not accepted requests to join group, could be null
          */
-        public Boolean getRequst() {
+        public Boolean getRequest() {
             return request;
         }
+
+        private Boolean invitation;
 
         /**
          * @return true if user was invited to group or event, could be null
@@ -320,7 +335,7 @@ public class VKGroupsApi {
      * Gets extended information if user is member of group
      * @param gId group short name
      * @param uId of user, information about you want to get
-     * @return IsMemberExtendedContainer with all parsed data, never return null
+     * @return IsMemberExtendedContainer with all parsed data, never returns null
      * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=groups.isMember">Documentation on vk.com</a>
@@ -344,7 +359,7 @@ public class VKGroupsApi {
         JSONObject jsonIsMemberExtended = api.sendRequest(params).optJSONObject("response");
 
         if (jsonIsMemberExtended == null)
-            throw new Exception("Incorrect response from vk.com");
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
 
         return IsMemberExtendedContainer.parseFromJSON(jsonIsMemberExtended);
     }
@@ -353,7 +368,7 @@ public class VKGroupsApi {
      * Gets extended information if user is member of group
      * @param gId of group
      * @param uId of user, information about you want to get
-     * @return IsMemberExtendedContainer with all parsed data, never return null
+     * @return IsMemberExtendedContainer with all parsed data, never returns null
      * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=groups.isMember">Documentation on vk.com</a>
@@ -368,8 +383,7 @@ public class VKGroupsApi {
      * @param q string to search by
      * @param offset to select specific subset
      * @param count of groups to get
-     * @return Container with total count of groups found and ArrayList of VKGroups,
-     * or null if answer from vk.com was incorrect
+     * @return Container with total count of groups found and ArrayList of VKGroups, never returns null
      * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=groups.search">Documentation on vk.com</a>
@@ -390,7 +404,7 @@ public class VKGroupsApi {
         JSONArray jsonSearchResults = api.sendRequest(params).optJSONArray("response");
 
         if (jsonSearchResults == null)
-            return null;
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
 
         VKGroupsWithCountContainer container = new VKGroupsWithCountContainer();
 

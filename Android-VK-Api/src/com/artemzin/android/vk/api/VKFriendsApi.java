@@ -31,7 +31,7 @@ public class VKFriendsApi {
     /**
      * Gets list of friends uIds
      * @param uId which friends uIds you want to get, put null to get friends of current user
-     * @return ArrayList with friends uIds, never return null
+     * @return ArrayList with friends uIds, never returns null
      * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=friends.get">Documentation on vk.com</a>
@@ -60,14 +60,14 @@ public class VKFriendsApi {
 
     /**
      * Gets friends list of user
-     * @param uId of user to get his friends, put null if you want to get friends of current user, null is allowed
+     * @param uId of user to get his friends, put null if you want to get friends of current user
      * @param fields of friends to get, put null if you want to get default fields VKUser.uId, VKUser.firstName, VKUser.lastName
      * @param nameCase of VKUser.firstName and VKUser.lastName fields, null is allowed
-     * @param count of friends to get, put null if you want to get all friends, null is allowed
+     * @param count of friends to get, put null if you want to get all friends
      * @param offset to select a subset of friends, null is allowed
      * @param lId of friends list, you can use this only if uId == uId of current user, null is allowed
      * @param order in which you want to get friends list, null is allowed
-     * @return ArrayList of VKUsers, never return null
+     * @return ArrayList of VKUsers, never returns null
      * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=friends.get">Documentation on vk.com</a>
@@ -117,7 +117,7 @@ public class VKFriendsApi {
 
     /**
      * Gets list of current user`s friends uIds, who installed this application
-     * @return ArrayList of friends uIds, never return null
+     * @return ArrayList of friends uIds, never returns null
      * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=friends.getAppUsers">Documentation on vk.com</a>
@@ -144,7 +144,7 @@ public class VKFriendsApi {
     /**
      * Gets list of online friends uIds
      * @param uId of user, which online friends list you want to get, put null to use uId of current user
-     * @return ArrayList of online friends uIds, never return null
+     * @return ArrayList of online friends uIds, never returns null
      * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=friends.getOnline">Documentation on vk.com</a>
@@ -175,7 +175,7 @@ public class VKFriendsApi {
      * Gets list of mutual friends uIds
      * @param targetUid of user, which mutual friends you want to get, null is denied
      * @param sourceUid of user, to search mutual friends with, put null to use current user uId
-     * @return ArrayList of mutual friends uIds, never return null
+     * @return ArrayList of mutual friends uIds, never returns null
      * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=friends.getMutual">Documentation on vk.com</a>
@@ -213,6 +213,8 @@ public class VKFriendsApi {
      */
     public static class FriendShipStatus {
 
+        private FriendShipStatus() {}
+
         private Long uId;
 
         public Long getUId() {
@@ -240,8 +242,6 @@ public class VKFriendsApi {
             return requestMessage;
         }
 
-        private FriendShipStatus() {}
-
         /**
          * Creating FriendShipStatus object from json
          * @param json to parse
@@ -266,7 +266,7 @@ public class VKFriendsApi {
     /**
      * Gets information about friendship status
      * @param uIds of users, which friendship status with current user you want to get, null is denied
-     * @return ArrayList of FriendShipStatus containers, never return null
+     * @return ArrayList of FriendShipStatus containers, never returns null
      * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=friends.areFriends">Documentation on vk.com</a>

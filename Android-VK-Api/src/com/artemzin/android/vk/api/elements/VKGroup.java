@@ -13,6 +13,72 @@ import org.json.JSONObject;
  */
 public class VKGroup {
 
+    /**
+     * All fields, which are supported at the moment by this library <br/>
+     * Needed for VKApi queries <br/>
+     * I am sorry about non java camelCase style, needed for converting enum elements to GET params
+     * @see <a href="http://vk.com/developers.php?oid=-1&p=%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80_fields_%D0%B4%D0%BB%D1%8F_%D0%B3%D1%80%D1%83%D0%BF%D0%BF">
+     *     Documentation on vk.com</a>
+     */
+    public enum Fields {
+        gid,
+        name,
+        is_closed,
+        is_admin,
+        photo,
+        photo_medium,
+        photo_big,
+        screen_name,
+        city,
+        country,
+
+        // Add place
+
+        description,
+        wiki_page,
+        members_count,
+
+        // Add counters
+
+        // Add start_date
+
+        // Add end_date
+
+        can_post,
+        activity,
+    }
+
+    /**
+     * All fields, which are supported at the moment by this library <br/>
+     * Needed for VKApi queries
+     */
+    public static final Fields[] ALL_FIELDS = Fields.values();
+
+    /**
+     * Default fields for VKGroup <br/>
+     * Needed for VKApi queries
+     */
+    public static final Fields[] DEFAULT_FIELDS = new Fields[] {
+            Fields.gid,
+            Fields.city,
+            Fields.country,
+
+            // Add place
+
+            Fields.description,
+            Fields.wiki_page,
+            Fields.members_count,
+
+            // Add counters
+
+            // Add start_date
+
+            // Add end_date
+
+            Fields.can_post,
+            Fields.activity,
+    };
+
     private Long updateTime;
 
     /**
@@ -218,17 +284,17 @@ public class VKGroup {
 	
 	/**
 	 * Parsing json array with groups list
-	 * @param json to parse
+	 * @param jsonArray to parse
 	 * @return array list with VKGroups. Always check ArrayList size!
 	 */
-	public static ArrayList<VKGroup> parseFromJSON(JSONArray json) {
-		ArrayList<VKGroup> groups = new ArrayList<VKGroup>();
-		for (int i = 0; i < json.length(); i++) {
+	public static ArrayList<VKGroup> parseFromJSON(JSONArray jsonArray) {
+		ArrayList<VKGroup> groups = new ArrayList<VKGroup>(jsonArray.length());
+		for (int i = 0; i < jsonArray.length(); i++) {
 			// Skipping non JSONObject elements;
 			// VK put array length in first element
 			try {
-				if (json.get(i) instanceof JSONObject) {
-					JSONObject jGroup = (JSONObject) json.get(i);
+				if (jsonArray.get(i) instanceof JSONObject) {
+					JSONObject jGroup = (JSONObject) jsonArray.get(i);
 					groups.add(parseFromJSON(jGroup));
 				}
 			} catch (JSONException ignored) {

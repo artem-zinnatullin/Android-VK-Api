@@ -23,6 +23,7 @@ class VKUsersApi {
      * Gets information about has user installed this application
      * @param uId of user, who you want to know about, put null to use uId of current user
      * @return true if user has installed this app
+     * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=isAppUser">Documentation on vk.com</a>
      */
@@ -39,7 +40,7 @@ class VKUsersApi {
         try {
             isAppUser = jsonIsAppUser.getInt("response");
         } catch (Exception ignored) {
-            throw new Exception("Incorrect answer from vk.com");
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
         }
 
         return isAppUser == 1;
@@ -49,9 +50,11 @@ class VKUsersApi {
      * Gets users by uIds
      * @param uIds of users which you want to get, maximum count == 1000, null is denied
      * @param fields of users to get,
-     *               put null if you want to get default fields only: VKUser.uId, VKUser.firstName, VKUser.lastName, null is allowed
-     * @param nameCase of VKUser.firstName and VKUser.lastName which you needed, put null if you want to use default: VKUser.NameCase.nom, null is allowed
-     * @return ArrayList of VKUsers, or null if answer from vk.com was incorrect
+     *               put null if you want to get default fields only: VKUser.uId, VKUser.firstName, VKUser.lastName
+     * @param nameCase of VKUser.firstName and VKUser.lastName which you needed,
+     *                 put null if you want to use default: VKUser.NameCase.nom
+     * @return ArrayList of VKUsers, never returns null
+     * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=users.get">Documentation on vk.com</a>
      * @see com.artemzin.android.vk.api.elements.VKUser
@@ -80,7 +83,7 @@ class VKUsersApi {
         JSONArray jsonUsers = api.sendRequest(params).optJSONArray("response");
 
         if (jsonUsers == null)
-            return null;
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
 
         ArrayList<VKUser> users = new ArrayList<VKUser>(jsonUsers.length());
 
@@ -98,7 +101,8 @@ class VKUsersApi {
      * @param count of users to get, maximum is 1000, put null to use default value == 20,
      *              I do not know why, but sometimes vk.com sent only 18 users
      * @param offset to select specific subset
-     * @return ArrayList of VKUsers found, or null if answer from vk.com was incorrect
+     * @return ArrayList of VKUsers found, never returns null
+     * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=users.search">Documentation on vk.com</a>
      */
@@ -129,7 +133,7 @@ class VKUsersApi {
         JSONArray jsonUsers = api.sendRequest(params).optJSONArray("response");
 
         if (jsonUsers == null)
-            return null;
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
 
         ArrayList<VKUser> users = new ArrayList<VKUser>(jsonUsers.length() - 1);
 
@@ -138,6 +142,7 @@ class VKUsersApi {
             JSONObject jsonUser = (JSONObject) jsonUsers.get(i);
             users.add(VKUser.parseFromJSON(jsonUser));
         }
+
         return users;
     }
 
@@ -145,6 +150,7 @@ class VKUsersApi {
      * Gets bitmask of user`s settings
      * @param uId of user, whose settings you want to get, put null to use uId of current user
      * @return bitmask of user`s settings
+     * @throws VKException
      * @throws Exception if something goes wrong
      * @see <a href="http://vk.com/developers.php?oid=-1&p=getUserSettings">Documentation on vk.com</a>
      */
@@ -160,7 +166,7 @@ class VKUsersApi {
         try {
             userSettings = jsonUserSettings.getInt("response");
         } catch (Exception ignored) {
-            throw new Exception("Incorrect response from vk.com");
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
         }
 
         return userSettings;

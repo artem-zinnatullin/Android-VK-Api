@@ -45,7 +45,7 @@ public class VKFriendsApi {
         JSONArray jsonFriendsIds = api.sendRequest(params).optJSONArray("response");
 
         if (jsonFriendsIds == null)
-            throw new Exception("Incorrect response from vk.com");
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
 
         ArrayList<Long> friendsIds = new ArrayList<Long>(jsonFriendsIds.length());
 
@@ -103,7 +103,7 @@ public class VKFriendsApi {
         JSONArray jsonFriends = api.sendRequest(params).optJSONArray("response");
 
         if (jsonFriends == null)
-            throw new Exception("Incorrect response from vk.com");
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
 
         ArrayList<VKUser> friends = new ArrayList<VKUser>(jsonFriends.length());
 
@@ -128,7 +128,7 @@ public class VKFriendsApi {
         JSONArray jsonFriendsAppUsersUIds = api.sendRequest(params).optJSONArray("response");
 
         if (jsonFriendsAppUsersUIds == null)
-            throw new Exception("Incorrect response from vk.com");
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
 
         ArrayList<Long> friendsAppUsersUIds = new ArrayList<Long>(jsonFriendsAppUsersUIds.length());
 
@@ -158,7 +158,7 @@ public class VKFriendsApi {
         JSONArray jsonOnlineFriendsUIds = api.sendRequest(params).optJSONArray("response");
 
         if (jsonOnlineFriendsUIds == null)
-            throw new Exception("Incorrect response from vk.com");
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
 
         ArrayList<Long> onlineFriendsUIds = new ArrayList<Long>(jsonOnlineFriendsUIds.length());
 
@@ -194,7 +194,7 @@ public class VKFriendsApi {
         JSONArray jsonMutualFriendsUIds = api.sendRequest(params).optJSONArray("response");
 
         if (jsonMutualFriendsUIds == null)
-            throw new Exception("Incorrect response from vk.com");
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
 
         ArrayList<Long> mutualFriendsUIds = new ArrayList<Long>(jsonMutualFriendsUIds.length());
 
@@ -285,7 +285,7 @@ public class VKFriendsApi {
         JSONArray jsonAreFriends = api.sendRequest(params).optJSONArray("response");
 
         if (jsonAreFriends == null)
-            throw new Exception("Incorrect response from vk.com");
+            throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
 
         ArrayList<FriendShipStatus> friendShipStatuses = new ArrayList<FriendShipStatus>(jsonAreFriends.length());
 

@@ -81,131 +81,33 @@ public class VKGroup {
 
     private Long updateTime;
 
-    /**
-     * Information update time, needed for most apps
-     */
-    public Long getUpdateTime() {
-        return updateTime;
-    }
-
     private Long gId;
-
-    /**
-     * Group id
-     */
-    public Long getGId() {
-        return gId;
-    }
 
     private String name;
 
-    /**
-     * Group name
-     */
-    public String getName() {
-        return name;
-    }
-
     private Boolean isClosed;
-
-    /**
-     * Is group closed
-     */
-    public Boolean getIsClosed() {
-        return isClosed;
-    }
 
     private Boolean isAdmin;
 
-    /**
-     * Is current user admin of this group
-     */
-    public Boolean getIsAdmin() {
-        return isAdmin;
-    }
-
     private String photo;
-
-    /**
-     * Url to 50 * 50 px group photo
-     */
-    public String getPhoto() {
-        return photo;
-    }
 
     private String photoMedium;
 
-    /**
-     * Url to 100 * 100 px group photo
-     */
-    public String getPhotoMedium() {
-        return photoMedium;
-    }
-
     private String photoBig;
-
-    /**
-     * Url to 250 * 250 px group photo
-     */
-    public String getPhotoBig() {
-        return photoBig;
-    }
 
     private String screenName;
 
-    /**
-     * Group screen name
-     */
-    public String getScreenName() {
-        return screenName;
-    }
-
     private Long city;
 
-    /**
-     * Id of group`s city
-     */
-    public Long getCity() {
-        return city;
-    }
-
     private Long country;
-
-    /**
-     * Id of group`s country
-     */
-    public Long getCountry() {
-        return country;
-    }
 
     // TODO Add place
 
     private String description;
 
-    /**
-     * Group description
-     */
-    public String getDescription() {
-        return description;
-    }
-
     private String wikiPage;
 
-    /**
-     * Name of main wiki page of group
-     */
-    public String getWikiPage() {
-        return wikiPage;
-    }
-
     private Long membersCount;
-
-    /**
-     * Count of group members
-     */
-    public Long getMembersCount() {
-        return membersCount;
-    }
 
     // TODO Add counters
 
@@ -215,6 +117,158 @@ public class VKGroup {
 
     private Boolean canPost;
 
+    private String activity;
+
+    /**
+     * Information update time, needed for most apps
+     */
+    public Long getUpdateTime() {
+        return updateTime;
+    }
+
+    /**
+     * Group id
+     */
+    public Long getGId() {
+        return gId;
+    }
+
+    public void setGId(Long gId) {
+        this.gId = gId;
+    }
+
+    /**
+     * Group name
+     */
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Is group closed
+     */
+    public Boolean getIsClosed() {
+        return isClosed;
+    }
+
+    public void setIsClosed(Boolean isClosed) {
+        this.isClosed = isClosed;
+    }
+
+    /**
+     * Is current user admin of this group
+     */
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    /**
+     * Url to 50 * 50 px group photo
+     */
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    /**
+     * Url to 100 * 100 px group photo
+     */
+    public String getPhotoMedium() {
+        return photoMedium;
+    }
+
+    public void setPhotoMedium(String photoMedium) {
+        this.photoMedium = photoMedium;
+    }
+
+    /**
+     * Url to 250 * 250 px group photo
+     */
+    public String getPhotoBig() {
+        return photoBig;
+    }
+
+    public void setPhotoBig(String photoBig) {
+        this.photoBig = photoBig;
+    }
+
+    /**
+     * Group screen name
+     */
+    public String getScreenName() {
+        return screenName;
+    }
+
+    public void setScreenName(String screenName) {
+        this.screenName = screenName;
+    }
+
+    /**
+     * Id of group`s city
+     */
+    public Long getCity() {
+        return city;
+    }
+
+    public void setCity(Long city) {
+        this.city = city;
+    }
+
+    /**
+     * Id of group`s country
+     */
+    public Long getCountry() {
+        return country;
+    }
+
+    public void setCountry(Long country) {
+        this.country = country;
+    }
+
+    /**
+     * Group description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * Name of main wiki page of group
+     */
+    public String getWikiPage() {
+        return wikiPage;
+    }
+
+    public void setWikiPage(String wikiPage) {
+        this.wikiPage = wikiPage;
+    }
+
+    /**
+     * Count of group members
+     */
+    public Long getMembersCount() {
+        return membersCount;
+    }
+
+    public void setMembersCount(Long membersCount) {
+        this.membersCount = membersCount;
+    }
+
     /**
      * Is current user able to post on group wall
      */
@@ -222,13 +276,19 @@ public class VKGroup {
         return canPost;
     }
 
-    private String activity;
+    public void setCanPost(Boolean canPost) {
+        this.canPost = canPost;
+    }
 
     /**
      * Group`s activity status or start date of event
      */
     public String getActivity() {
         return activity;
+    }
+
+    public void setActivity(String activity) {
+        this.activity = activity;
     }
 
     /**
@@ -281,7 +341,7 @@ public class VKGroup {
 
 		return group;
 	}
-	
+
 	/**
 	 * Parsing json array with groups list
 	 * @param jsonArray to parse
@@ -302,4 +362,5 @@ public class VKGroup {
 		}
 		return groups;
 	}
+
 }

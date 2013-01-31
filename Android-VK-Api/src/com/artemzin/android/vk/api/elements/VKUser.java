@@ -86,193 +86,45 @@ public class VKUser {
 
     private Long updateTime;
 
-    /**
-     * Information update time, needed for most apps
-     */
-    public Long getUpdateTime() {
-        return updateTime;
-    }
-
     private Long uId;
-
-    /**
-     * vk.com user id
-     */
-    public Long getUId() {
-        return uId;
-    }
 
     private String firstName;
 
-    /**
-     * First name
-     */
-    public String getFirstName() {
-        return firstName;
-    }
-
     private String lastName;
-
-    /**
-     * Last name
-     */
-    public String getLastName() {
-        return lastName;
-    }
 
     private Integer sex;
 
-    /**
-     * User`s sex <br/>
-     * 1 - female <br/>
-     * 2 - male <br/>
-     * 0 - unknown
-     */
-    public Integer getSex() {
-        return sex;
-    }
-
     private String bDate;
-
-    /**
-     * Birthday date <br/>
-     * For example: "23.11.1981" or "21.9" if year is hidden
-     */
-    public String getBDate() {
-        return bDate;
-    }
 
     private Long city;
 
-    /**
-     * Id of user`s city
-     * @see com.artemzin.android.vk.api.VKApi# getCities
-     */
-    public Long getCity() {
-        return city;
-    }
-
     private Long country;
-
-    /**
-     * Id of user`s country
-     * @see com.artemzin.android.vk.api.VKApi# getCountries
-     */
-    public Long getCountry() {
-        return country;
-    }
 
     private String photo50;
 
-    /**
-     * Url to square photo with width == height == 50px
-     */
-    public String getPhoto50() {
-        return photo50;
-    }
-
     private String photo100;
-
-    /**
-     * Url to square photo with width == height == 100px
-     */
-    public String getPhoto100() {
-        return photo100;
-    }
 
     private String photo200Orig;
 
-    /**
-     * Url to not necessarily square photo with width = 200px
-     */
-    public String getPhoto200Orig() {
-        return photo200Orig;
-    }
-
     private String photo200;
-
-    /**
-     * Url to square photo with width == height == 200px
-     */
-    public String getPhoto200() {
-        return photo200;
-    }
 
     private String photo400Orig;
 
-    /**
-     * Url to not necessarily square photo with width == 400px
-     */
-    public String getPhoto400Orig() {
-        return photo400Orig;
-    }
-
     private String photoMax;
-
-    /**
-     * Url to square photo with maximum of possible resolution
-     */
-    public String getPhotoMax() {
-        return photoMax;
-    }
 
     private String photoMaxOrig;
 
-    /**
-     * Url to not necessarily square photo with maximum of possible resolution
-     */
-    public String getPhotoMaxOrig() {
-        return photoMaxOrig;
-    }
-
     private Boolean online;
-
-    /**
-     * Is user online
-     */
-    public Boolean getOnline() {
-        return online;
-    }
 
     private Boolean onlineMobile;
 
-    /**
-     * If user is online from mobile device
-     */
-    public Boolean getOnlineMobile() {
-        return onlineMobile;
-    }
-
     private Long onlineApp;
-
-    /**
-     * Id of application, from which user is online <br/>
-     * Exists only if user using some application, not web site
-     */
-    public Long getOnlineApp() {
-        return onlineApp;
-    }
 
     // TODO Add lists
 
     private String screenName;
 
-    /**
-     * Part of link after http://vk.com/... <br/>
-     * Example: id172672179 or "andrew"
-     */
-    public String getScreenName() {
-        return screenName;
-    }
-
     private Boolean hasMobile;
-
-    /**
-     * Is user`s mobile phone number known
-     */
-    public Boolean getHasMobile() {
-        return hasMobile;
-    }
 
     // TODO Add contacts
 
@@ -290,49 +142,13 @@ public class VKUser {
 
     private String activity;
 
-    /**
-     * User`s activity status <br/>
-     * Example: "Walking with my friends"
-     */
-    public String getActivity() {
-        return activity;
-    }
-
     private Long lastSeen;
 
-    /**
-     * Last seen time when user was online
-     */
-    public Long getLastSeen() {
-        return lastSeen;
-    }
-
     private Integer relation;
-
-    /**
-     * Kind of relationship of user <br/>
-     * 1 - Single <br/>
-     * 2 - have a boyfriend / girlfriend <br/>
-     * 3 - Engaged <br/>
-     * 4 - Married <br/>
-     * 5 - It is difficult <br/>
-     * 6 - In active search <br/>
-     * 7 - In love
-     */
-    public Integer getRelation() {
-        return relation;
-    }
 
     // TODO Add counters
 
     private String nickName;
-
-    /**
-     * User`s nickname
-     */
-    public String getNickName() {
-        return nickName;
-    }
 
     // TODO Add exports
 
@@ -353,6 +169,282 @@ public class VKUser {
     // TODO Add about
 
     // TODO Add connections
+
+    /**
+     * Information update time, needed for most apps
+     */
+    public Long getUpdateTime() {
+        return updateTime;
+    }
+
+    /**
+     * vk.com user id
+     */
+    public Long getUId() {
+        return uId;
+    }
+
+    public void setUId(Long uId) {
+        this.uId = uId;
+    }
+
+    /**
+     * First name
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * Last name
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    /**
+     * User`s sex <br/>
+     * 1 - female <br/>
+     * 2 - male <br/>
+     * 0 - unknown
+     */
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    /**
+     * Birthday date <br/>
+     * For example: "23.11.1981" or "21.9" if year is hidden
+     */
+    public String getBDate() {
+        return bDate;
+    }
+
+    public void setBDate(String bDate) {
+        this.bDate = bDate;
+    }
+
+    /**
+     * Id of user`s city
+     * @see com.artemzin.android.vk.api.VKApi# getCities
+     */
+    public Long getCity() {
+        return city;
+    }
+
+    public void setCity(Long city) {
+        this.city = city;
+    }
+
+    /**
+     * Id of user`s country
+     * @see com.artemzin.android.vk.api.VKApi# getCountries
+     */
+    public Long getCountry() {
+        return country;
+    }
+
+    public void setCountry(Long country) {
+        this.country = country;
+    }
+
+    /**
+     * Url to square photo with width == height == 50px
+     */
+    public String getPhoto50() {
+        return photo50;
+    }
+
+    public void setPhoto50(String photo50) {
+        this.photo50 = photo50;
+    }
+
+    /**
+     * Url to square photo with width == height == 100px
+     */
+    public String getPhoto100() {
+        return photo100;
+    }
+
+    public void setPhoto100(String photo100) {
+        this.photo100 = photo100;
+    }
+
+    /**
+     * Url to square photo with width == height == 200px
+     */
+    public String getPhoto200() {
+        return photo200;
+    }
+
+    public void setPhoto200(String photo200) {
+        this.photo200 = photo200;
+    }
+
+    /**
+     * Url to not necessarily square photo with width = 200px
+     */
+    public String getPhoto200Orig() {
+        return photo200Orig;
+    }
+
+    public void setPhoto200Orig(String photo200Orig) {
+        this.photo200Orig = photo200Orig;
+    }
+
+    /**
+     * Url to not necessarily square photo with width == 400px
+     */
+    public String getPhoto400Orig() {
+        return photo400Orig;
+    }
+
+    public void setPhoto400Orig(String photo400Orig) {
+        this.photo400Orig = photo400Orig;
+    }
+
+    /**
+     * Url to square photo with maximum of possible resolution
+     */
+    public String getPhotoMax() {
+        return photoMax;
+    }
+
+    public void setPhotoMax(String photoMax) {
+        this.photoMax = photoMax;
+    }
+
+    /**
+     * Url to not necessarily square photo with maximum of possible resolution
+     */
+    public String getPhotoMaxOrig() {
+        return photoMaxOrig;
+    }
+
+    public void setPhotoMaxOrig(String photoMaxOrig) {
+        this.photo400Orig = photoMaxOrig;
+    }
+
+    /**
+     * Is user online
+     */
+    public Boolean getOnline() {
+        return online;
+    }
+
+    public void setOnline(Boolean online) {
+        this.online = online;
+    }
+
+    /**
+     * If user is online from mobile device
+     */
+    public Boolean getOnlineMobile() {
+        return onlineMobile;
+    }
+
+    public void setOnlineMobile(Boolean onlineMobile) {
+        this.onlineMobile = onlineMobile;
+    }
+
+    /**
+     * Id of application, from which user is online <br/>
+     * Exists only if user using some application, not web site
+     */
+    public Long getOnlineApp() {
+        return onlineApp;
+    }
+
+    public void setOnlineApp(Long onlineApp) {
+        this.onlineApp = onlineApp;
+    }
+
+    /**
+     * Part of link after http://vk.com/... <br/>
+     * Example: id172672179 or "andrew"
+     */
+    public String getScreenName() {
+        return screenName;
+    }
+
+    public void setScreenName(String screenName) {
+        this.screenName = screenName;
+    }
+
+    /**
+     * Is user`s mobile phone number known
+     */
+    public Boolean getHasMobile() {
+        return hasMobile;
+    }
+
+    public void setHasMobile(Boolean hasMobile) {
+        this.hasMobile = hasMobile;
+    }
+
+    /**
+     * User`s activity status <br/>
+     * Example: "Walking with my friends"
+     */
+    public String getActivity() {
+        return activity;
+    }
+
+    public void setActivity(String activity) {
+        this.activity = activity;
+    }
+
+    /**
+     * Last seen time when user was online in UNIX TIMESTAMP format / 1000
+     */
+    public Long getLastSeen() {
+        return lastSeen;
+    }
+
+    public void setLastSeen(Long lastSeen) {
+        this.lastSeen = lastSeen;
+    }
+
+    /**
+     * Kind of relationship of user <br/>
+     * 1 - Single <br/>
+     * 2 - have a boyfriend / girlfriend <br/>
+     * 3 - Engaged <br/>
+     * 4 - Married <br/>
+     * 5 - It is difficult <br/>
+     * 6 - In active search <br/>
+     * 7 - In love
+     */
+    public Integer getRelation() {
+        return relation;
+    }
+
+    public void setRelation(Integer relation) {
+        this.relation = relation;
+    }
+
+    /**
+     * User`s nickname
+     */
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
 
     /**
 	 * Parsing VKUser object from JSON

@@ -17,6 +17,34 @@ public class VKMessage {
 	
 	private Long mId;
 
+    private Long uId;
+
+    private Long date;
+
+    private Boolean readState;
+
+    private Boolean out;
+
+	private String title;
+
+    private String body;
+
+    // TODO Add Attachments
+
+    private ArrayList<VKMessage> fwdMessages;
+
+    private Long chatId;
+
+    private ArrayList<Long> chatActive;
+
+    private Integer usersCount;
+
+    private Long adminId;
+
+    private Boolean deleted;
+
+    private Boolean emoji;
+
     /**
      * Message mId
      */
@@ -24,7 +52,9 @@ public class VKMessage {
         return mId;
     }
 
-    private Long uId;
+    public void setMId(Long mId) {
+        this.mId = mId;
+    }
 
     /**
      * uId of user who sent message
@@ -33,16 +63,20 @@ public class VKMessage {
         return uId;
     }
 
-    private Long date;
+    public void setUId(Long uId) {
+        this.uId = uId;
+    }
 
     /**
-     * Message date
+     * Message date in UNIX TIMESTAMP format / 1000
      */
     public Long getDate() {
         return date;
     }
 
-    private Boolean readState;
+    public void setDate(Long date) {
+        this.date = date;
+    }
 
     /**
      * Read state
@@ -51,7 +85,9 @@ public class VKMessage {
         return readState;
     }
 
-    private Boolean out;
+    public void setReadState(Boolean readState) {
+        this.readState = readState;
+    }
 
     /**
      * Is message out (to send)
@@ -60,7 +96,9 @@ public class VKMessage {
         return out;
     }
 
-	private String title;
+    public void setOut(Boolean out) {
+        this.out = out;
+    }
 
     /**
      * Message title
@@ -69,7 +107,9 @@ public class VKMessage {
         return title;
     }
 
-    private String body;
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     /**
      * Message body
@@ -78,9 +118,9 @@ public class VKMessage {
         return body;
     }
 
-    // TODO Add Attachments
-
-    private ArrayList<VKMessage> fwdMessages;
+    public void setBody(String body) {
+        this.body = body;
+    }
 
     /**
      * ArrayList of forwarded messages
@@ -89,7 +129,9 @@ public class VKMessage {
         return fwdMessages;
     }
 
-    private Long chatId;
+    public void setFwdMessages(ArrayList<VKMessage> fwdMessages) {
+        this.fwdMessages = fwdMessages;
+    }
 
     /**
      * Only for group dialogs, chat id
@@ -98,7 +140,9 @@ public class VKMessage {
         return chatId;
     }
 
-    private ArrayList<Long> chatActive;
+    public void setChatId(Long chatId) {
+        this.chatId = chatId;
+    }
 
     /**
      * Only for group dialogs, ArrayList of last 6 uIds in chat
@@ -107,7 +151,9 @@ public class VKMessage {
         return chatActive;
     }
 
-    private Integer usersCount;
+    public void setChatActive(ArrayList<Long> chatActive) {
+        this.chatActive = chatActive;
+    }
 
     /**
      * Only for group dialogs, count of users in chat
@@ -116,7 +162,9 @@ public class VKMessage {
         return usersCount;
     }
 
-    private Long adminId;
+    public void setUsersCount(Integer usersCount) {
+        this.usersCount = usersCount;
+    }
 
     /**
      * Only for group dialogs, chat admin`s uId
@@ -125,7 +173,9 @@ public class VKMessage {
         return adminId;
     }
 
-    private Boolean deleted;
+    public void setAdminId(Long adminId) {
+        this.adminId = adminId;
+    }
 
     /**
      * Is message was deleted by user
@@ -134,13 +184,19 @@ public class VKMessage {
         return deleted;
     }
 
-    private Boolean emoji;
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
 
     /**
      * Is message contains emoji smiles
      */
     public Boolean getEmoji() {
         return emoji;
+    }
+
+    public void setEmoji(Boolean emoji) {
+        this.emoji = emoji;
     }
 
     /**
@@ -194,4 +250,5 @@ public class VKMessage {
 			message.emoji = true;
 		return message;
 	}
+
 }

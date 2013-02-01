@@ -89,7 +89,7 @@ class VKUsersApi {
 
         for (int i = 0; i < jsonUsers.length(); i++) {
             JSONObject jsonUser = (JSONObject) jsonUsers.get(i);
-            users.add(VKUser.parseFromJSON(jsonUser));
+            users.add(VKJSONParser.parseUserFromJSON(jsonUser));
         }
         return users;
     }
@@ -140,7 +140,7 @@ class VKUsersApi {
         // Skipping zero element, it contains count of users
         for (int i = 1; i < jsonUsers.length(); i++) {
             JSONObject jsonUser = (JSONObject) jsonUsers.get(i);
-            users.add(VKUser.parseFromJSON(jsonUser));
+            users.add(VKJSONParser.parseUserFromJSON(jsonUser));
         }
 
         return users;

@@ -2,6 +2,7 @@ package com.artemzin.android.vk.api.elements;
 
 import java.util.ArrayList;
 
+import com.artemzin.android.vk.api.VKJSONParser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -49,13 +50,13 @@ public class VKNewsFeed {
 				
 				if (jNewsProfiles != null) {
 					for (int i = 0; i < jNewsProfiles.length(); i++) {
-						VKUser feedProfile = VKUser.parseFromJSON(jNewsProfiles.optJSONObject(i));
+						VKUser feedProfile = VKJSONParser.parseUserFromJSON(jNewsProfiles.optJSONObject(i));
 						newsFeed.profiles.add(feedProfile);
 					}
 				}
 				
 				if (jNewsGroups != null) {
-					newsFeed.groups = VKGroup.parseFromJSON(jNewsGroups);
+					newsFeed.groups = VKJSONParser.parseGroupsFromJSON(jNewsGroups);
 				}
 			}
 		}

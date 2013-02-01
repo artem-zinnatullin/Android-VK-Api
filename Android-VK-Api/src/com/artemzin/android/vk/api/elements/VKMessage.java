@@ -2,10 +2,6 @@ package com.artemzin.android.vk.api.elements;
 
 import java.util.ArrayList;
 
-import com.artemzin.android.vk.api.VKUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 /**
  * Class for vk message <br/>
  * ATTENTION: By default all fields are null
@@ -198,57 +194,5 @@ public class VKMessage {
     public void setEmoji(Boolean emoji) {
         this.emoji = emoji;
     }
-
-    /**
-	 * Creating VKMessage object from JSON
-	 * @param json with message data
-	 */
-	public static VKMessage parseFromJSON(JSONObject json) {
-		VKMessage message = new VKMessage();
-        if (!json.isNull("mid"))
-            message.mId = json.optLong("mid");
-        if (!json.isNull("uid"))
-            message.uId = json.optLong("uid");
-        if (!json.isNull("date"))
-            message.date = json.optLong("date");
-        if (!json.isNull("read_state"))
-            message.readState = json.optInt("read_state") == 1;
-        if (!json.isNull("out"))
-            message.out = json.optInt("out") == 1;
-        if (!json.isNull("title"))
-            message.title = VKUtils.unescape(json.optString("title"));
-        if (!json.isNull("body"))
-            message.body = VKUtils.unescape(json.optString("body"));
-
-        // Add attachments
-
-        if (!json.isNull("fwd_messages")) {
-            JSONArray jsonForwardedMessagesArray = json.optJSONArray("fwd_messages");
-            message.fwdMessages = new ArrayList<VKMessage>();
-            for (int i = 0; i < jsonForwardedMessagesArray.length(); i++) {
-                VKMessage fwdMessage = VKMessage.parseFromJSON((JSONObject)jsonForwardedMessagesArray.opt(i));
-                message.fwdMessages.add(fwdMessage);
-            }
-        }
-        if (!json.isNull("chat_id"))
-            message.chatId = json.optLong("chat_id");
-        if (!json.isNull("chat_active")) {
-            String chatActive = json.optString("chat_active");
-            message.chatActive = new ArrayList<Long>();
-            String[] uIds = chatActive.split(",");
-            for(String uId: uIds) {
-                message.chatActive.add(Long.parseLong(uId));
-            }
-        }
-        if (!json.isNull("users_count"))
-            message.usersCount = json.optInt("users_count");
-        if (!json.isNull("admin_id"))
-            message.adminId = json.optLong("admin_id");
-        if (json.has("deleted"))
-			message.deleted = true;
-		if (json.has("emoji"))
-			message.emoji = true;
-		return message;
-	}
 
 }

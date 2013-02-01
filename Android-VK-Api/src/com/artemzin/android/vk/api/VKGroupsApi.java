@@ -194,7 +194,7 @@ public class VKGroupsApi {
         VKGroupsWithCountContainer container = new VKGroupsWithCountContainer();
 
         container.count = (Integer) jsonGroups.get(0);
-        container.groups = VKGroup.parseFromJSON(jsonGroups);
+        container.groups = VKJSONParser.parseGroupsFromJSON(jsonGroups);
 
         return container;
     }
@@ -231,7 +231,7 @@ public class VKGroupsApi {
         if (jsonGroups == null)
             throw new Exception(VKApi.EXCEPTION_MESSAGE_INCORRECT_RESPONSE);
 
-        return VKGroup.parseFromJSON(jsonGroups);
+        return VKJSONParser.parseGroupsFromJSON(jsonGroups);
     }
 
     /**
@@ -409,7 +409,7 @@ public class VKGroupsApi {
         VKGroupsWithCountContainer container = new VKGroupsWithCountContainer();
 
         container.count = (Integer) jsonSearchResults.get(0);
-        container.groups = VKGroup.parseFromJSON(jsonSearchResults);
+        container.groups = VKJSONParser.parseGroupsFromJSON(jsonSearchResults);
 
         return container;
     }

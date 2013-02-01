@@ -109,7 +109,7 @@ public class VKFriendsApi {
 
         for (int i = 0; i < jsonFriends.length(); i++) {
             JSONObject jsonFriend = (JSONObject) jsonFriends.get(i);
-            friends.add(VKUser.parseFromJSON(jsonFriend));
+            friends.add(VKJSONParser.parseUserFromJSON(jsonFriend));
         }
 
         return friends;

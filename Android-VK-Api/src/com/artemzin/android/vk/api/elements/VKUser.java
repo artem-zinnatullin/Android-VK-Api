@@ -335,7 +335,7 @@ public class VKUser {
     }
 
     public void setPhotoMaxOrig(String photoMaxOrig) {
-        this.photo400Orig = photoMaxOrig;
+        this.photoMaxOrig = photoMaxOrig;
     }
 
     /**
@@ -446,108 +446,5 @@ public class VKUser {
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
-
-    /**
-	 * Parsing VKUser object from JSON
-	 * @param json with user`s data
-	 * @return VKUser object with parsed fields
-	 */
-	public static VKUser parseFromJSON(JSONObject json) {
-		VKUser user = new VKUser();
-		if (!json.isNull("uid"))
-            user.uId = json.optLong("uid");
-		if (!json.isNull("first_name"))
-			user.firstName = json.optString("first_name");
-		if (!json.isNull("last_name"))
-			user.lastName = json.optString("last_name");
-        if (!json.isNull("sex"))
-            user.sex = json.optInt("sex");
-        if (!json.isNull("bdate"))
-            user.bDate = json.optString("bdate");
-        if (!json.isNull("city"))
-            user.city = json.optLong("city");
-        if (!json.isNull("country"))
-            user.country = json.optLong("country");
-        if (!json.isNull("photo_50"))
-            user.photo50 = json.optString("photo_50");
-        if (!json.isNull("photo_100"))
-            user.photo100 = json.optString("photo_100");
-        if (!json.isNull("photo_200"))
-            user.photo200 = json.optString("photo_200");
-        if (!json.isNull("photo_200_orig")) {
-            String response = json.optString("photo_200_orig");
-            if (!response.equals("false"))
-                user.photo200Orig = response;
-        }
-        if (!json.isNull("photo_400_orig"))
-            user.photo400Orig = json.optString("photo_400_orig");
-        if (!json.isNull("photo_max"))
-            user.photoMax = json.optString("photo_max");
-        if (!json.isNull("photo_max_orig"))
-            user.photoMaxOrig = json.optString("photo_max_orig");
-        if (!json.isNull("online"))
-            user.online = json.optInt("online") == 1;
-        if (json.has("online_mobile"))
-            user.onlineMobile = true;
-        if (!json.isNull("online_app"))
-            user.onlineApp = json.optLong("online_app");
-
-        // Add lists
-
-        if (!json.isNull("screen_name"))
-            user.screenName = json.optString("screen_name");
-        if (!json.isNull("has_mobile"))
-            user.hasMobile = json.optInt("has_mobile") == 1;
-
-        // Add contacts
-
-        // Add education
-
-        // Add universities
-
-        // Add schools
-
-        // Add can_post
-
-        // Add can_see_all_posts
-
-        // Add can_write_private_message
-
-        if (!json.isNull("activity"))
-            user.activity = json.optString("activity");
-        if (!json.isNull("last_seen")) {
-            JSONObject o = json.optJSONObject("last_seen");
-            if (!o.isNull("time")) {
-                user.lastSeen = o.optLong("time");
-            }
-        }
-        if (!json.isNull("relation"))
-            user.relation = json.optInt("relation");
-
-        // Add counters
-
-        if (!json.isNull("nickname"))
-			user.nickName = json.optString("nickname");
-
-        // Add exports
-
-        // Add wall_comments
-
-        // Add interests
-
-        // Add movies
-
-        // Add tv
-
-        // Add books
-
-        // Add games
-
-        // Add about
-
-        // Add connections
-
-		return user;
-	}
 
 }

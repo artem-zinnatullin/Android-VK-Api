@@ -211,6 +211,7 @@ public class VKUser {
     }
 
     /**
+     * Oh yeah baby! <br/>
      * User`s sex <br/>
      * 1 - female <br/>
      * 2 - male <br/>

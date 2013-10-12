@@ -1,4 +1,6 @@
-#Android-VK-Api library
+#Android-VK-Api library (deprecated)
+
+I am sorry, but this code is not supported, so if you want to use it, please create a fork and play with it, I am keeping it here for guys, who starred repo
 
 **Need to work with vk.com in your Android app? Just use Android-VK-Api library!**
 
@@ -8,8 +10,7 @@
 All methods has same parameters as their originals on api.vk.com
 
 ###*Pavel Durov says:*
-![Pavel Durov] (http://files.artemzin.ru/img/durov.png)
-&nbsp;&nbsp;&nbsp;&nbsp;«Best Android vk.com api implementation I ever seen!» (little joke)
+Best Android vk.com api implementation I ever seen!» (little joke)
 
 -----
 
@@ -28,7 +29,7 @@ All methods has same parameters as their originals on api.vk.com
     // That is all! Now you can work with vk.com api!
     
     // For example, lets get all friends of Pavel Durov
-    ArrayList<VKUser> pavelDurovFriends = api.friends.get(1L, VKUser.ALL_FIELDS, null, null, null, null, null);
+    List<VKUser> pavelDurovFriends = api.friends.get(1L, VKUser.ALL_FIELDS, null, null, null, null, null);
     
     
 ------

@@ -37,3 +37,4 @@ Some ideas were taken from the [thest1 VK SDK project] (https://github.com/thest
 but Android-VK-Api has **better code and documentation** with links to [vk.com developers docs] (http://vk.com/developers.php?oid=-1&p=%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%B2_API)
 , plus full code coverage with JUnit tests.
 
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/artem-zinnatullin/android-vk-api/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
